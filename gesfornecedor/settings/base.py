@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     # 3td Apps
     # MY Apps
     'core',
+    'supplier',
 ]
 
 MIDDLEWARE = [
