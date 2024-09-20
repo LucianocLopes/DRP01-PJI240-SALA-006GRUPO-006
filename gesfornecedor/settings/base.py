@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     # 3td Apps
     # MY Apps
+    'core',
 ]
 
 MIDDLEWARE = [

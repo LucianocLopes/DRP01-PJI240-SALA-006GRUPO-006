@@ -8,58 +8,7 @@
         {% include 'partial/_header.html' %}
     </header>
 
-    <main>
-        <section class="form-section" aria-labelledby="form-heading">
-            <h2 id="form-heading">Cadastro de Fornecedores</h2>
-            <form id="supplierForm" aria-describedby="error-message">
-                <label for="supplierName">Nome do Fornecedor:</label>
-                <input type="text" id="supplierName" name="supplierName" placeholder="Ex.: Empresa X" required>
-
-                <label for="requestDate">Data da Abertura da Requisição:</label>
-                <input type="date" id="requestDate" name="requestDate" required>
-
-                <label for="supplierCNPJ">CNPJ:</label>
-                <input type="text" id="supplierCNPJ" name="supplierCNPJ" placeholder="00.000.000/0000-00" required>
-
-                <label for="serviceStartDate">Data de Início da Prestação de Serviço:</label>
-                <input type="date" id="serviceStartDate" name="serviceStartDate" required>
-
-                <label for="justification">Justificativa da Contratação:</label>
-                <textarea id="justification" name="justification" placeholder="Descreva a justificativa" required></textarea>
-
-                <label for="totalValue">Valor Total da Contratação:</label>
-                <input type="number" id="totalValue" name="totalValue" placeholder="Ex.: 50000" required>
-
-                <label for="additionalFiles">Arquivos Adicionais:</label>
-                <input type="file" id="additionalFiles" name="additionalFiles">
-
-                <button type="submit">Cadastrar Fornecedor</button>
-            </form>
-
-            <div id="error-message" role="alert" aria-live="assertive" class="hidden"></div>
-        </section>
-
-        <section class="supplier-list">
-            <h2>Lista de Fornecedores</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome do Fornecedor</th>
-                        <th>CNPJ</th>
-                        <th>Data de Início</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="supplierTable">
-                </tbody>
-            </table>
-        </section>
-    </main>
-
-    {% include 'partial/_footer.html' %}
-
-    <button id="theme-toggle">Alternar Fundo</button>
+    {% block content %}{% endblock content %}
 
     {% include 'partial/_scripts.html' %}
 </body>
