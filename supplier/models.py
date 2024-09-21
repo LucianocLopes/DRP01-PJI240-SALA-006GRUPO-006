@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-user = get_user_model()
+USER = get_user_model()
 
 
 # Abstracts Models
@@ -26,7 +26,7 @@ class TimeStampBase(models.Model):
     created = models.DateTimeField(_("Criado em"), auto_now=False, auto_now_add=True)
     modified = models.DateTimeField(_("Modificado em"), auto_now=True, auto_now_add=False)
     created_by = models.ForeignKey(
-        "user", 
+        USER, 
         verbose_name=_("Usuário"), 
         on_delete=models.CASCADE
     )
@@ -36,6 +36,7 @@ class TimeStampBase(models.Model):
 # Create your models here.
 class Supplier(TimeStampBase):   
     """Model definition for Supplier."""
+    
     
     is_active = models.BooleanField(_("Ativo"), default=True)
     company_name = models.CharField(_("Razão Social"), max_length=150, null=False, blank=False)
@@ -52,7 +53,7 @@ class Supplier(TimeStampBase):
         """Unicode representation of Supplier."""
         if self.fantasy_name:
             return self.fantasy_name.title()
-        return self.company_name.title()
+        return self.company_name
 
 
 class ContactSupplier(models.Model):
@@ -66,19 +67,22 @@ class ContactSupplier(models.Model):
     first_name = models.CharField(_("Nome"), max_length=30, null=False, blank=False)
     last_name = models.CharField(_("Sobrenome"), max_length=50, null=True, blank=True)
     position_company = models.CharField(_("Cargo na Empresa"), max_length=50, null=False, blank=False)
-    e-mail = models.EmailField(_("E-mail"), max_length=254, null=False, blank=False)
+    e_mail = models.EmailField(_("E-mail"), max_length=254, null=False, blank=False)
     remarks = models.CharField(_("Observações"), max_length=254, null=True, blank=True)
-    
 
     class Meta:
         """Meta definition for ContactSupplier."""
 
         verbose_name = 'Contato do Fornecedor'
         verbose_name_plural = 'Contatos dos Fornecedores'
-
+    @property
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+    
     def __str__(self):
         """Unicode representation of ContactSupplier."""
-        return f'{self.first_name.title()} {self.last_name.title()} - {self.position_company.title()}'
+        
+        return f'{self.full_name.title()} - {self.position_company.title}'
 
 
 class PhoneContact(PhoneBase):
@@ -104,8 +108,8 @@ class PhoneContact(PhoneBase):
 
 class PhoneSupplier(PhoneBase):
 
-    contact = models.ForeignKey(
-        ContactSupplier, 
+    supplier_id = models.ForeignKey(
+        Supplier, 
         verbose_name=_("Telefone"), 
         on_delete=models.CASCADE,
     )
@@ -123,7 +127,7 @@ class PhoneSupplier(PhoneBase):
         return f'({self.ddd_number}) {self.phone_number}'
 
 
-class ResquestSupplier(models.Model):
+class RequestSupplier(models.Model):
     class StatusChoice(models.TextChoices):
         INITIATED = "IT", _("Iniciado")
         PARALYZED = "PL", _("Paralizado")
@@ -135,7 +139,8 @@ class ResquestSupplier(models.Model):
     supplier_id = models.ForeignKey(
         Supplier,
         verbose_name=_("Fornecedor"), 
-        on_delete=models.CASCADE),
+        on_delete=models.CASCADE
+    )
     request_date = models.DateField(_("Data da Requisição"), null=False, blank=False)
     reson_hiring = models.CharField(_("Motivo da Contratação"), max_length=254, null=False, blank=False)
     contract_value = models.FloatField(_("Valor Total do Contrato"), null=False, blank=False)
@@ -149,4 +154,4 @@ class ResquestSupplier(models.Model):
 
     def __str__(self):
         """Unicode representation of ResquestSupplier."""
-        return f'{self.supplier_id} - Data {self.request_date} - Valor Total R$ {self.contract_value}'
+        return f'Data {self.request_date} - Valor Total R$ {self.contract_value}'
