@@ -1,0 +1,27 @@
+{% extends 'core/index.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main>
+        <section class="supplier-list">
+            <h2>Fornecedores Cadastrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome do Fornecedor</th>
+                        <th>CNPJ</th>
+                        <th>Data de Início</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="supplierTable">
+                    <!-- Lista de fornecedores será inserida aqui dinamicamente -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+{% endblock content %}
