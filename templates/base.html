@@ -4,12 +4,7 @@
     {% include 'partial/_head.html' %}
 </head>
 <body class="dark-theme">
-    <header>
-        {% include 'partial/_header.html' %}
-    </header>
-
-    {% block content %}{% endblock content %}
-
+    {% block base_content %}{% endblock base_content %}
     {% include 'partial/_scripts.html' %}
 </body>
 </html>
