@@ -40,7 +40,7 @@ class SupplierListView(ListView):
 
 class SupplierCreateView(SupplierFieldsMixin, CreateView):
     model = Supplier
-    template_name = "supplier/CRUD/create.html"
+    template_name = "supplier/CRUD/supplier/create.html"
     
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -51,7 +51,7 @@ class SupplierCreateView(SupplierFieldsMixin, CreateView):
 
 class SupplierDetailView(DetailView):
     model = Supplier
-    template_name = "supplier/CRUD/detail.html"
+    template_name = "supplier/CRUD/supplier/detail.html"
     
     def get_context_data(self, **kwargs):
         context = super(SupplierDetailView, self).get_context_data(**kwargs)
@@ -62,6 +62,6 @@ class SupplierDetailView(DetailView):
 
 
 class DeleteView(TemplateView):
-    template_name = "supplier/CRUD/delete.html"
+    template_name = "supplier/CRUD/supplier/delete.html"
 
 

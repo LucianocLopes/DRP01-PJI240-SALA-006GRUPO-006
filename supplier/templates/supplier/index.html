@@ -3,15 +3,35 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="container-md table-overflow">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Exclusão de Registro de Fornecedor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja realmente excluir o registro do fornecedor?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success">Excluir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container-md table-overflow mt-5">
         <h1 class="mt-2 text-center">Lista de Fornecedores Cadastrados</h1>
         <p class="text-center">Clique na Razão Social do fornecedor desejado para obter mais informações!</p>
         <div class="d-flex mb-3 btn-group">
             <a href="{% url 'supplier-new' %}"><input type="button" value="Novo" class="btn btn-primary"></a>
             
+            
+        </div>
+        <div class="d-flex align-items-end">
             {% include 'partial/_pagination.html' %}
         </div>
-        
         {% if supplier_list %}
         <table class="table table-dark table-striped table-hover">
             <thead>
@@ -47,7 +67,7 @@
                     <td class="text-center">
                         <a href="" ><i class="bi bi-pencil-square text-primary"></i></a>
                         |  
-                        <a href=""><i class="bi bi-trash-fill text-danger"></i></a>
+                        <a href="http://"><i class="bi bi-trash-fill text-danger"></i></a>
                     </td>
                 </tr>
                 {% endfor %}                        
