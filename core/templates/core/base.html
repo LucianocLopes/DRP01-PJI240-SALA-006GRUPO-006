@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block base_content %}
+<body class="main">
+    {% include 'partial/_hero.html' %}
+    {% block content %}
+    
+    {% endblock content %}
+{% endblock base_content %}
+</body>

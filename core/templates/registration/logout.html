@@ -2,20 +2,14 @@
 {% load static %}
 
 {% block base_content %}
-    <main class="form-signin">
-        <form>
-            <img class="mb-4" src="{% static 'img/logo.png' %}" alt="" width="132" height="100">
-            <h1 class="h3 mb-3 fw-normal">Por favor faça sua identificação</h1>
-            <div class="form-floating">
-                <label for="floatingInput">Nome de Usuário</label>
-                <input type="text" class="form-control" id="floatingInput" placeholder="Usuário">
-            </div>
-            <div class="form-floating">
-                <label for="floatingPassword">Senha</label>
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Senha">
-            </div>
-            <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-            {% include 'partial/_footer.html' %}
+<body class="log">
+    <div class="logout-container">
+        <form class="logout-form" method="post">
+            {% csrf_token %}
+            <h2>Logout</h2>
+            <p>Você tem certeza que deseja sair?</p>
+            <button type="submit">Logout</button>
         </form>
-    </main>
+    </div>
+</body>
 {% endblock base_content %}

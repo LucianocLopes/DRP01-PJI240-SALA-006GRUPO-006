@@ -2,20 +2,34 @@
 {% load static %}
 
 {% block base_content %}
-    <main class="form-signin">
-        <form>
-            <img class="mb-4" src="{% static 'img/logo.png' %}" alt="" width="132" height="100">
-            <h1 class="h3 mb-3 fw-normal">Por favor faça sua identificação</h1>
-            <div class="form-floating">
-                <label for="floatingInput">Nome de Usuário</label>
-                <input type="text" class="form-control" id="floatingInput" placeholder="Usuário">
+<body class="log">
+    <div class="login-container">
+        <img src="{% static 'img/logo.png' %}" alt="Logo da ONG" id="img-logo">
+        {% if next %}
+            {% if user.is_authenticated %}
+                <p>Sua conta não tem acesso a esta página. Para prosseguir,
+                    faça login com uma conta que tenha acesso.</p>
+            {% else %}
+                <h2>Gestão de Fornecedores</h2>
+                <p>Por favor, faça login para ter acesso ao site.</p>
+            {% endif %}
+        {% endif %}
+        {% if form.errors %}
+            <p>Seu nome de usuário e senha não correspondem. Tente novamente.</p>
+        {% endif %}
+        <form class="login-form" method="post">
+            {% csrf_token %}
+            
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
             </div>
-            <div class="form-floating">
-                <label for="floatingPassword">Senha</label>
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Senha">
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
             </div>
-            <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-            {% include 'partial/_footer.html' %}
+            <button type="submit">Entrar</button>
         </form>
-    </main>
+    </div>
+</body>
 {% endblock base_content %}
