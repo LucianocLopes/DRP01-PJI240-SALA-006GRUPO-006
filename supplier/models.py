@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-
+from django.urls import reverse
 USER = get_user_model()
 
 
@@ -42,13 +42,16 @@ class Supplier(TimeStampBase):
     company_name = models.CharField(_("Razão Social"), max_length=150, null=False, blank=False)
     fantasy_name = models.CharField(_("Nome Fantasia"), max_length=150, null=True, blank=True)
     cnpj_number = models.CharField(_("CNPJ"), max_length=14, null=False, blank=True)
-
+    e_mail = models.EmailField(_("E-mail"), max_length=254, blank=True, null=True)
     class Meta:
         """Meta definition for Supplier."""
 
         verbose_name = 'Fornecedor'
         verbose_name_plural = 'Fornecedores'
-
+    
+    def get_absolute_url(self):
+        return reverse("supplier-detail", kwargs={"pk": self.pk})
+    
     def __str__(self):
         """Unicode representation of Supplier."""
         if self.fantasy_name:
@@ -77,7 +80,11 @@ class ContactSupplier(models.Model):
         verbose_name_plural = 'Contatos dos Fornecedores'
     @property
     def full_name(self):
-        return f'{self.first_name} {self.last_name}'
+        if self.last_name:
+            return f'{self.first_name.title()} {self.last_name.title()}'
+        return f'{self.first_name.title()}'
+    
+
     
     def __str__(self):
         """Unicode representation of ContactSupplier."""
