@@ -2,32 +2,243 @@
 {% load static %}
 
 {% block content %}
-<div class="container-md mt-4 mb-2">
-<div class="card-group">
-    <div class="card text-bg-dark">
-        <img src="{% static 'img/logo.png' %}" class="card-img" alt="...">
-        <div class="card-img-overlay">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small>Last updated 3 mins ago</small></p>
+<div class="page-wrapper compact-wrapper mt-5" id="pageWrapper"> 
+    <div class="page-body">
+        <div class="container-fluid general-widget">
+            <div class="row">
+                <div class="col-sm-6 col-xl-3 box-col-6">
+                    <div class="card widget-1">
+                        <div class="card-body">
+                            <div class="widget-content">
+                                <div class="widget-round danger">
+                                    <div class="bg-round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-buildings-fill" viewBox="0 0 16 16">
+                                            <path d="M15 .5a.5.5 0 0 0-.724-.447l-8 4A.5.5 0 0 0 6 4.5v3.14L.342 9.526A.5.5 0 0 0 0 10v5.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V14h1v1.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5zM2 11h1v1H2zm2 0h1v1H4zm-1 2v1H2v-1zm1 0h1v1H4zm9-10v1h-1V3zM8 5h1v1H8zm1 2v1H8V7zM8 9h1v1H8zm2 0h1v1h-1zm-1 2v1H8v-1zm1 0h1v1h-1zm3-2v1h-1V9zm-1 2h1v1h-1zm-2-4h1v1h-1zm3 0v1h-1V7zm-2-2v1h-1V5zm1 0h1v1h-1z"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4>155</h4><span class="f-light">Fornecedores</span>
+                                </div>
+                            </div>
+                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span>+80% Ativo</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 box-col-6">
+                    <div class="card widget-1">
+                        <div class="card-body">
+                            <div class="widget-content">
+                                <div class="widget-round danger">
+                                    <div class="bg-round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4>R$ 85.000</h4><span class="f-light">Contratos Finalizados</span>
+                                </div>
+                            </div>
+                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span>+75%</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 box-col-6">
+                    <div class="card widget-1">
+                        <div class="card-body">
+                            <div class="widget-content">
+                                <div class="widget-round danger">
+                                    <div class="bg-round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-bar-graph-fill" viewBox="0 0 16 16">
+                                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1m.5 10v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5m-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4>R$ 15.900</h4><span class="f-light">Contratos em execução</span>
+                                </div>
+                            </div>
+                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span>+15%</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 box-col-6">
+                    <div class="card widget-1">
+                        <div class="card-body">
+                            <div class="widget-content">
+                                <div class="widget-round danger">
+                                    <div class="bg-round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4>R$ 32.000</h4><span class="f-light">Contratos em aberto</span>
+                                </div>
+                            </div>
+                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span>+15%</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid general-widget">
+            <div class="row">
+                <div class="col-xxl-12 col-xl-12 col-md-12 box-col-7">
+                    <div class="card">
+                        <div class="card-header card-no-border pb-0">
+                            <h3>Assignments</h3>
+                        </div>
+                        <div class="card-body pt-0 assignment-table">
+                            <div class="table theme-scrollbar">
+                                <div id="assignment_wrapper" class="dataTables_wrapper no-footer">
+                                    <div id="assignment_filter" class="dataTables_filter">
+                                        <label>Search:<input type="search" class="" placeholder="" aria-controls="assignment"></label>
+                                    </div>
+                                    <table class="table display table-bordernone pt-0 dataTable no-footer" id="assignment" style="width:100%"role="grid">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Customer</th>
+                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Subject</th>
+                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Start Date</th>
+                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1" >Status</th>
+                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1" >submit date<th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr role="row" class="odd">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="flex-shrink-0 comman-round">
+                                                            <img src="../assets/images/dashboard-3/user/1.png" alt="">
+                                                        </div>
+                                                        <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>Gary Goodwin</h6></a>
+                                                            <p>2019</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h6 class="f-w-600">Accounts</h6>
+                                                </td>
+                                                <td class="f-w-600">20 May</td>
+                                                <td class="text-end">
+                                                    <div class="btn bg-light-success border-light-success text-success">Completed </div>
+                                                </td>
+                                                <td class="f-w-600 text-center">31 july</td>
+                                            </tr>
+                                            <tr role="row" class="even">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/2.png" alt=""></div>
+                                                        <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>Ralph Venter</h6></a>
+                                                            <p>2019</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h6 class="f-w-600">Bus. Study</h6>
+                                                </td>
+                                                <td class="f-w-600">10 May</td>
+                                                <td class="text-end">
+                                                    <div class="btn bg-light-success border-light-success text-success">Completed  </div>
+                                                </td>
+                                                    <td class="f-w-600 text-center">5th Aug</td>
+                                            </tr>
+                                            <tr role="row" class="odd">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/3.png" alt=""></div>
+                                                        <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>Edwin Deo</h6></a>
+                                                            <p>2019</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td> 
+                                                    <h6 class="f-w-600"> Mathematics</h6>
+                                                </td>
+                                                <td class="f-w-600">30 Sep</td>
+                                                <td class="text-end">
+                                                    <div class="btn bg-light-warning border-light-warning text-warning">Pending </div>
+                                                </td>
+                                                <td class="f-w-600 text-center">31 July</td>
+                                            </tr>
+                                            <tr role="row" class="even">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/4.png" alt=""></div>
+                                                        <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>Aaron Hors</h6></a>
+                                                            <p>2019</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td> 
+                                                    <h6 class="f-w-600">Computer App</h6>
+                                                </td>
+                                                <td class="f-w-600">13 Oct</td>
+                                                <td class="text-end">
+                                                    <div class="btn bg-light-danger border-light-danger text-danger">Canceled </div>
+                                                </td>
+                                                <td class="f-w-600 text-center">31 May</td>
+                                            </tr>
+                                            <tr role="row" class="odd">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/5.png" alt=""></div>
+                                                        <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>Fenter Jessy</h6></a>
+                                                            <p>2019</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td> 
+                                                    <h6 class="f-w-600"> Graphic Design</h6>
+                                                </td>
+                                                <td class="f-w-600">25 May</td>
+                                                <td class="text-end">
+                                                    <div class="btn bg-light-success border-light-success text-success">Completed  </div>
+                                                </td>
+                                                <td class="f-w-600 text-center">24 Oct</td>
+                                            </tr>
+                                            <tr role="row" class="even">
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/6.png" alt=""></div>
+                                                        <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>Alice Hogan</h6></a>
+                                                            <p>2019</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h6 class="f-w-600"> Design Thinking</h6>
+                                                </td>
+                                                <td class="f-w-600">20 Feb</td>
+                                                <td class="text-end">
+                                                    <div class="btn bg-light-success border-light-success text-success">Completed  </div>
+                                                </td>
+                                                <td class="f-w-600 text-center">31 July</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="card text-bg-dark">
-        <img src="{% static 'img/logo.png' %}" class="card-img" alt="...">
-        <div class="card-img-overlay">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small>Last updated 3 mins ago</small></p>
-        </div>
-    </div>
-    <div class="card text-bg-dark">
-        <img src="{% static 'img/logo.png' %}" class="card-img" alt="...">
-        <div class="card-img-overlay">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small>Last updated 3 mins ago</small></p>
-        </div>
-    </div>
-</div>
 </div>
 {% endblock content %}

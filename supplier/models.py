@@ -58,7 +58,6 @@ class Supplier(TimeStampBase):
             return self.fantasy_name.title()
         return self.company_name
 
-
 class ContactSupplier(models.Model):
     """Model definition for ContactSupplier."""
 
@@ -132,6 +131,9 @@ class PhoneSupplier(PhoneBase):
         if self.ddi_number:
             return f'+{self.ddi_number} ({self.ddd_number}) {self.phone_number}'
         return f'({self.ddd_number}) {self.phone_number}'
+
+    def get_absolute_url(self):
+        return reverse("supplier-detail", kwargs={"pk": self.supplier_id.pk})
 
 
 class RequestSupplier(models.Model):

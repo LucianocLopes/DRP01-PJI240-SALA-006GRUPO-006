@@ -17,21 +17,10 @@ class SupplierForm(forms.ModelForm):
     class Meta:
         model = Supplier
         fields = '__all__'
-        
-    # def __init__(self, *args, **kwargs):
-    #     super(SupplierForm, self).__init__(*args, **kwargs)
-        
-    #     self.helper = FormHelper(self)
-    #     self.helper.layout = Layout(
-    #     Row(
-    #         Column('is_active', css_class='col-md-2'),
-    #         Column('company_name', css_class='col-md-8'),
-    #     ),
-    #     Row(
-    #         Column('fantasy_name', css_class='col-md-7'),
-    #         Column('cnpj_number', css_class='col-md-5'),
-    #     ),
-    #     Row(
-    #         Column('e_mail', css_class='col-md-12'),
-    #     ),
-    #     )
+
+
+class PhoneSupplierForm(forms.ModelForm):
+    
+    class Meta:
+        model = PhoneSupplier
+        fields = '__all__'

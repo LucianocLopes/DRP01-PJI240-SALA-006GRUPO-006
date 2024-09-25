@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, CreateView, DetailView, ListView
 from django.http import HttpResponseRedirect
 from .models import Supplier, PhoneSupplier, ContactSupplier, PhoneContact
 
-from .forms import SupplierForm
+from .forms import SupplierForm, PhoneSupplier
 
 # Create your views here.
 
@@ -65,3 +65,33 @@ class DeleteView(TemplateView):
     template_name = "supplier/CRUD/supplier/delete.html"
 
 
+
+
+# PHONE SUPPLIER
+
+class PhoneSupplierCreateView(CreateView):
+    model = PhoneSupplier
+    template_name = "supplier/CRUD/phones_supplier/create.html"
+    
+    
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.fields = ["type_phone",
+                    "ddi_number",
+                    "ddd_number",
+                    "phone_number",
+                    ]
+        return super().dispatch(request, *args, **kwargs)
+    
+    
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        supplier = Supplier.objects.get(id=self.kwargs['int'])
+        
+        print(supplier)
+        
+        
+        self.object.supplier_id = supplier
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())

@@ -1,0 +1,15 @@
+{% load static %}
+
+<div class="col-xxl-9 col-xl-8 box-col-8 position-relative">                            
+    <div class="tab-content" id="supplier-pills-tabContent">
+        <div class="tab-pane fade show active" id="detail-supplier" role="tabpanel" aria-labelledby="detail-supplier-tab">
+            {% include 'supplier/CRUD/supplier/detailsupplier/detail-supplier.html' %}
+        </div>
+        <div class="tab-pane fade" id="contacts-supplier" role="tabpanel" aria-labelledby="contacts-supplier-tab">
+            {% include 'supplier/CRUD/supplier/detailsupplier/contacts-supplier.html' %}
+        </div>        
+        <div class="tab-pane fade" id="contracts-supplier" role="tabpanel" aria-labelledby="contracts-supplier-tab">
+            {% include 'supplier/CRUD/supplier/detailsupplier/contracts-supplier.html' %}
+        </div>
+    </div>
+</div>
