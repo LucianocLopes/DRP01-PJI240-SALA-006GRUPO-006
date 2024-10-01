@@ -24,7 +24,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+<<<<<<< HEAD
     # 3rd Party Apps
+=======
+    'rest_framework',
+    # 3td Apps
+>>>>>>> origin/deploy
     'crispy_forms',
     "crispy_bootstrap5",
     'debug_toolbar',  # Certifique-se de que há apenas uma instância de 'debug_toolbar'
