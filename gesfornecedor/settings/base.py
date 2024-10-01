@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     # MY Apps
     'core',
     'supplier',
+    'suppli_request',
 ]
 
 MIDDLEWARE = [
