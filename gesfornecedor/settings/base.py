@@ -1,3 +1,4 @@
+import environ
 from environ import Env
 from pathlib import Path
 
@@ -23,9 +24,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    # 3td Apps
+    # 3rd Party Apps
     'crispy_forms',
     "crispy_bootstrap5",
+    'debug_toolbar',  # Certifique-se de que há apenas uma instância de 'debug_toolbar'
     # MY Apps
     'core',
     'supplier',
@@ -39,7 +41,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # Certifique-se de que há apenas uma instância
 ]
+
+INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'gesfornecedor.urls'
 
@@ -59,13 +64,10 @@ TEMPLATES = [
     },
 ]
 
-
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 WSGI_APPLICATION = 'gesfornecedor.wsgi.application'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -85,21 +87,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-
 LANGUAGE_CODE = 'pt-br'
-
 TIME_ZONE = 'America/Sao_Paulo'
-
 USE_I18N = True
-
 USE_TZ = True
-
 USE_THOUSAND_SEPARATOR = True
-
 DECIMAL_SEPARATOR = ','
 
 # Static files (CSS, JavaScript, Images)
@@ -114,13 +109,10 @@ STATIC_ROOT = BASE_DIR / 'static/'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
 
 LOGIN_URL = "login"
 LOGOUT_REDIRECT_URL = LOGIN_URL

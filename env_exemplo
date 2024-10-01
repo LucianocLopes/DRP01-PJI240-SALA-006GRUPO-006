@@ -1,16 +1,25 @@
-DEBUG=
-SECRET_KEY=
-ALLOWED_HOSTS=
+# Configurações de depuração
+DEBUG=True
 
-DATABASE_URL=
-#MYSQL_DB=
-#MYSQL_USER=
-#MYSQL_PASSWORD=
-#DB_HOST=
+# Chave secreta do Django (substitua por uma chave segura em produção)
+SECRET_KEY=lnne7dt+B3cg4r1SQqokCOwTdU5axtHM4BwbS95q2sTL9XT6pkhd6rEz9JkBczUu
 
+# Hosts permitidos (adicione os hosts permitidos separados por vírgula)
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# URL do banco de dados (padrão: SQLite)
+DATABASE_URL=sqlite:///db.sqlite3
+
+# Configurações do MySQL (descomente e preencha se estiver usando MySQL)
+# MYSQL_DB=
+# MYSQL_USER=
+# MYSQL_PASSWORD=
+# DB_HOST=
+
+# Configurações de email
 #DEFAULT_FROM_EMAIL=
-EMAIL_BACKEND=
-EMAIL_HOST=
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST=localhost
 #EMAIL_PORT=
 #EMAIL_HOST_USER=
 #EMAIL_HOST_PASSWORD=
