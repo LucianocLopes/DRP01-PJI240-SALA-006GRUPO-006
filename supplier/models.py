@@ -83,7 +83,8 @@ class ContactSupplier(models.Model):
             return f'{self.first_name.title()} {self.last_name.title()}'
         return f'{self.first_name.title()}'
     
-
+    def get_absolute_url(self):
+        return reverse("supplier-detail", kwargs={"pk": self.supplier_id.pk})
     
     def __str__(self):
         """Unicode representation of ContactSupplier."""
@@ -95,7 +96,7 @@ class PhoneContact(PhoneBase):
 
     contact = models.ForeignKey(
         ContactSupplier, 
-        verbose_name=_("Telefone"), 
+        verbose_name=_("Contato"), 
         on_delete=models.CASCADE,
     )
     
@@ -116,7 +117,7 @@ class PhoneSupplier(PhoneBase):
 
     supplier_id = models.ForeignKey(
         Supplier, 
-        verbose_name=_("Telefone"), 
+        verbose_name=_("Fornecedor"), 
         on_delete=models.CASCADE,
     )
 

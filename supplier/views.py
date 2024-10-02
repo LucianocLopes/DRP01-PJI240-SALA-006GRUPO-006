@@ -1,4 +1,5 @@
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, DetailView, ListView
 from django.http import HttpResponseRedirect
 from .models import Supplier, PhoneSupplier, ContactSupplier, PhoneContact
@@ -36,6 +37,7 @@ class SupplierListView(ListView):
     model = Supplier
     template_name = "supplier/index.html"
     context_object_name = 'supplier_list'
+    paginate_by = 3
 
 
 class SupplierCreateView(SupplierFieldsMixin, CreateView):
@@ -55,9 +57,15 @@ class SupplierDetailView(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super(SupplierDetailView, self).get_context_data(**kwargs)
-        context['phones'] = PhoneSupplier.objects.filter(supplier_id = self.object)
-        context['contacts'] = ContactSupplier.objects.filter(supplier_id = self.object)
-        context['phones_contact'] = PhoneContact.objects.all()
+        
+        phones = PhoneSupplier.objects.filter(supplier_id = self.object)
+        contacts = ContactSupplier.objects.filter(supplier_id = self.object)
+        phones_contacts = PhoneContact.objects.filter(contact = contacts.first())
+        
+        context['phones'] = phones
+        context['contacts'] = contacts
+        context['phones_contact'] = phones_contacts
+        
         return context
 
 
@@ -72,6 +80,13 @@ class DeleteView(TemplateView):
 class PhoneSupplierCreateView(CreateView):
     model = PhoneSupplier
     template_name = "supplier/CRUD/phones_supplier/create.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(PhoneSupplierCreateView, self).get_context_data(**kwargs)
+        
+        pk_int = self.kwargs['int']
+        context['pk_int'] = pk_int
+        return context    
     
     
     
@@ -89,9 +104,67 @@ class PhoneSupplierCreateView(CreateView):
         self.object = form.save(commit=False)
         supplier = Supplier.objects.get(id=self.kwargs['int'])
         
-        print(supplier)
+        self.object.supplier_id = supplier
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
+class ContactSupplierCreateView(CreateView):
+    model = ContactSupplier
+    template_name = "supplier/CRUD/contact_supplier/create.html"
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.fields = ["first_name",
+                    "last_name",
+                    "position_company",
+                    "e_mail",
+                    "remarks",
+                    ]
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super(ContactSupplierCreateView, self).get_context_data(**kwargs)
         
+        pk_int = self.kwargs['int']
+        context['pk_int'] = pk_int
+        return context    
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        supplier = Supplier.objects.get(id=self.kwargs['int'])
         
         self.object.supplier_id = supplier
         self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
+class PhoneContactCreateView(CreateView):
+    model = PhoneContact
+    template_name = "supplier/CRUD/contact_supplier/phones_contact/create.html"
+    
+    
+    fields = ["type_phone",
+                "ddi_number",
+                "ddd_number",
+                "phone_number",
+            ]
+    def get_success_url(self):
+        
+        return reverse("supplier-detail", kwargs={"pk": self.kwargs['int']})
+
+    
+    def get_context_data(self, **kwargs):
+        context = super(PhoneContactCreateView, self).get_context_data(**kwargs)
+        
+        pk_int = self.kwargs['int']
+        context['pk_int'] = pk_int
+        return context    
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        contact = ContactSupplier.objects.get(id=self.kwargs['int2'])
+        
+        self.object.contact = contact
+        self.object.save()
+        
         return HttpResponseRedirect(self.get_success_url())

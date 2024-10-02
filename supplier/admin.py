@@ -56,7 +56,7 @@ class SupplierAdmin(admin.ModelAdmin):
 class ContactSupplierAdmin(admin.ModelAdmin):
     '''Admin View for ContactSupplier'''
 
-    list_display = ('first_name', 'last_name', 'e_mail')
+    list_display = ('id', 'first_name', 'last_name', 'e_mail')
     inlines = [
         PhoneContactInline,
     ]
