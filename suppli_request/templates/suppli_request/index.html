@@ -1,0 +1,124 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="page-wrapper compact-wrapper mt-5" id="pageWrapper"> 
+    <div class="page-body">
+        <div class="container-fluid general-widget">
+            <div class="row">
+                <div class="col-xxl-12 col-xl-12 col-md-12 box-col-7">
+                    <div class="card">
+                        <div class="card-header card-no-border pb-0 text-center">
+                            <h3>Requisições de Serviços</h3>
+                        </div>
+                        <div class="card-body pt-0 assignment-table">
+                            <div class="table theme-scrollbar">
+                                <div id="assignment_wrapper" class="dataTables_wrapper no-footer">
+                                    <div id="assignment_filter" class="dataTables_filter">
+                                        <label>Search:  <input type="search" class="" placeholder="" aria-controls="assignment"></label>
+                                    </div>
+                                    <table class="table display table-bordernone pt-0 dataTable no-footer" id="assignment" style="width:100%"role="grid">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_disabled" rowspan="1" colspan="1" >ID Requisição</th>
+                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Motivo da Requisição</th>
+                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Data de Abertura</th>
+                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1" >Cotações</th>
+                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1" >Status<th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr role="row" class="odd">
+                                                <td>
+                                                    <h6 class="f-w-600">103</h6>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="flex-shrink-0 comman-round">
+                                                            <img src="{% static 'img/1.png' %}" alt="">
+                                                        </div>
+                                                        <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>REQUISIÇÃO DE FORNECIMENTO DE MATERIAL BASICO DE ESCRITÓRIO</h6></a>
+                                                            <p>XXX ITENS / VALOR R$ $.$$0,00</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="f-w-600">20 May 2024</td>
+                                                <td class="f-w-600 text-center">1</td>
+                                                <td class="text-end">
+                                                    <div class="btn bg-light-success border-light-success text-success">Completed </div>
+                                                </td>
+                                            </tr>
+                                            <tr role="row" class="even">
+                                                <td> 
+                                                    <h6 class="f-w-600">101</h6>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/4.png" alt=""></div>
+                                                        <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>REQUISIÇÃO DE FORNECIMENTO DE MATERIAL BASICO DE ESCRITÓRIO</h6></a>
+                                                            <p>XXX ITENS / VALOR R$ $.$$0,00
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td class="f-w-600">13 Oct 2024</td>
+                                                <td class="f-w-600 text-center">5</td>
+                                                <td class="text-end">
+                                                    <div class="btn bg-light-danger border-light-danger text-danger">Canceled </div>
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr role="row" class="even">
+                                                <td>
+                                                    <h6 class="f-w-600">105</h6>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/2.png" alt=""></div>
+                                                        <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>REQUISIÇÃO DE FORNECIMENTO DE MATERIAL BASICO DE LIMPEZA</h6></a>
+                                                            <p>XXX ITENS / VALOR R$ $.$$0,00</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="f-w-600">10 May 2024</td>
+                                                
+                                                <td class="f-w-600 text-center">5</td>
+                                                <td class="text-end">
+                                                    <div class="btn bg-light-success border-light-success text-success">Completed  </div>
+                                                </td>
+                                            </tr>
+                                            <tr role="row" class="odd">
+                                                <td> 
+                                                    <h6 class="f-w-600">107</h6>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/3.png" alt=""></div>
+                                                        <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>REQUISIÇÃO DE FORNECIMENTO DE MATERIAL BASICO DE ESCRITÓRIO</h6></a>
+                                                            <p>XXX ITENS / VALOR R$ $.$$0,00</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="f-w-600">30 Sep 2024</td>
+                                                <td class="f-w-600 text-center">0</td>
+                                                <td class="text-end">
+                                                    <div class="btn bg-light-warning border-light-warning text-warning">Pending </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
