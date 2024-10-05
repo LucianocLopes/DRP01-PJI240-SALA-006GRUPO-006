@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
-from supplier.models import TimeStampBase
+from supplier.models import TimeStampBase, Supplier
 
 USER = get_user_model()
 
@@ -129,3 +129,33 @@ class ItensSupplyRequest(models.Model):
     def __str__(self):
         """Unicode representation of ItensSupplyRequest."""
         return f'{self.code_item_request} - {self.description_item}'
+
+
+class Proposal(TimeStampBase):
+    is_aproved = models.BooleanField(_("Aprovada"), default=False)
+    supplier = models.ForeignKey(
+        Supplier, 
+        verbose_name=_("Fornecedor"), 
+        on_delete=models.DO_NOTHING,
+    )
+    request = models.ForeignKey(
+        SupplyResquest, 
+        verbose_name=_("Requisição de Fornecimento"), 
+        on_delete=models.DO_NOTHING,
+    )
+    item_request = models.ForeignKey(
+        ItensSupplyRequest, 
+        verbose_name=_("Item da Requisição"),
+        on_delete=models.DO_NOTHING,
+    )
+    price_proposal = models.FloatField(_("Preço da cotação"))
+    validity = models.DateField(_("Validade"))
+    class Meta:
+        """Meta definition for Proposal."""
+
+        verbose_name = 'Cotação'
+        verbose_name_plural = 'Cotações'
+
+    def __str__(self):
+        """Unicode representation of Proposal."""
+        return f'{self.supplier} - {self.request} / {self.item_request}'

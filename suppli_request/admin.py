@@ -22,3 +22,9 @@ class SupplyResquestAdmin(admin.ModelAdmin):
     inlines = [
         ItensSupplyRequestInline,
     ]
+
+@admin.register(models.Proposal)
+class ProposalAdmin(admin.ModelAdmin):
+    '''Admin View for models.Proposal'''
+
+    list_display = ('supplier', 'request', 'item_request', 'price_proposal', 'validity')

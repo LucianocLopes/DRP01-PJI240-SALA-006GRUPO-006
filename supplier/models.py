@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+
 USER = get_user_model()
 
 
@@ -135,32 +136,3 @@ class PhoneSupplier(PhoneBase):
     def get_absolute_url(self):
         return reverse("supplier-detail", kwargs={"pk": self.supplier_id.pk})
 
-
-class RequestSupplier(models.Model):
-    class StatusChoice(models.TextChoices):
-        INITIATED = "IT", _("Iniciado")
-        PARALYZED = "PL", _("Paralizado")
-        INPROGRESS = "IP", _("Em andamento")
-        FINISHED = "FN", _("Finalizado")
-        COMPLETED = "CP", _("Concluido")    
-    """Model definition for ResquestSupplier."""
-
-    supplier_id = models.ForeignKey(
-        Supplier,
-        verbose_name=_("Fornecedor"), 
-        on_delete=models.CASCADE
-    )
-    request_date = models.DateField(_("Data da Requisição"), null=False, blank=False)
-    reson_hiring = models.CharField(_("Motivo da Contratação"), max_length=254, null=False, blank=False)
-    contract_value = models.FloatField(_("Valor Total do Contrato"), null=False, blank=False)
-    status = models.CharField(_("Status"), max_length=2, choices=StatusChoice.choices, default="IT")
-
-    class Meta:
-        """Meta definition for ResquestSupplier."""
-
-        verbose_name = 'Requisição ao Fornecedor'
-        verbose_name_plural = 'Requisições aos Fornecedores'
-
-    def __str__(self):
-        """Unicode representation of ResquestSupplier."""
-        return f'Data {self.request_date} - Valor Total R$ {self.contract_value}'
