@@ -71,6 +71,14 @@ class SupplyResquest(TimeStampBase):
     date_request = models.DateField(_("Data da Requisição"))
     description_request = models.CharField(_("Descrição da Requisição"), max_length=150)
     status = models.CharField(_("Status"), max_length=2, choices=StatusRequestChoice.choices)
+    supplier = models.ForeignKey(
+        Supplier, 
+        verbose_name=_("Fornecedor"), 
+        on_delete=models.DO_NOTHING,
+        blank=True, null=True
+    )
+    start_date = models.DateField(_("Inicio do Contrato"), blank=True, null=True)
+    delivery_time = models.DateField(_("Prazo de Entrega"), blank=True, null=True)
 
     class Meta:
         """Meta definition for SuppliResquest."""
@@ -97,6 +105,9 @@ class SupplyResquest(TimeStampBase):
             unit_total += iten.amount_item
         return unit_total
     get_unit_total.fget.short_description = "Quantidade Total de Itens"
+    
+    def get_absolute_url(self):
+        return reverse("suppli_request-detail", kwargs={"pk": self.pk})
     
     def __str__(self):
         """Unicode representation of SuppliResquest."""
@@ -129,33 +140,3 @@ class ItensSupplyRequest(models.Model):
     def __str__(self):
         """Unicode representation of ItensSupplyRequest."""
         return f'{self.code_item_request} - {self.description_item}'
-
-
-class Proposal(TimeStampBase):
-    is_aproved = models.BooleanField(_("Aprovada"), default=False)
-    supplier = models.ForeignKey(
-        Supplier, 
-        verbose_name=_("Fornecedor"), 
-        on_delete=models.DO_NOTHING,
-    )
-    request = models.ForeignKey(
-        SupplyResquest, 
-        verbose_name=_("Requisição de Fornecimento"), 
-        on_delete=models.DO_NOTHING,
-    )
-    item_request = models.ForeignKey(
-        ItensSupplyRequest, 
-        verbose_name=_("Item da Requisição"),
-        on_delete=models.DO_NOTHING,
-    )
-    price_proposal = models.FloatField(_("Preço da cotação"))
-    validity = models.DateField(_("Validade"))
-    class Meta:
-        """Meta definition for Proposal."""
-
-        verbose_name = 'Cotação'
-        verbose_name_plural = 'Cotações'
-
-    def __str__(self):
-        """Unicode representation of Proposal."""
-        return f'{self.supplier} - {self.request} / {self.item_request}'
