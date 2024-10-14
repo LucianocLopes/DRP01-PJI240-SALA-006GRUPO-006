@@ -153,8 +153,7 @@ class PhoneSupplier(PhoneBase):
     def get_absolute_url(self):
         return reverse("supplier-detail", kwargs={"pk": self.supplier_id.pk})
 
-<<<<<<< HEAD
-=======
+
 class ResquestSupplier(models.Model):
     class StatusChoice(models.TextChoices):
         INITIATED = "IT", _("Iniciado")
@@ -208,4 +207,3 @@ class AddressSupplier(AddressBase):
     def __str__(self):
         """Unicode representation of Supplier."""
         return f'{self.address_type} - {self.zip_code}-{self.address} {self.number} {self.complement} - {self.city}/{self.state}'
->>>>>>> suppliers
