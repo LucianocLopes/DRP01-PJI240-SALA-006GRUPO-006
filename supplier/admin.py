@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import ContactSupplier, Supplier, PhoneContact, RequestSupplier, PhoneSupplier
+from .models import ContactSupplier, Supplier, PhoneContact, PhoneSupplier
 
 # Register your models here.
 # tabular
@@ -29,14 +29,6 @@ class PhoneSupplierInline(admin.TabularInline):
     max_num = 3
     extra = 0
 
-class RequestSupplierInline(admin.TabularInline):
-    '''Tabular Inline View for RequestSupplier'''
-
-    model = RequestSupplier
-    min_num = 0
-    max_num = 999
-    extra = 1
-
 
 # admin
 @admin.register(Supplier)
@@ -48,7 +40,6 @@ class SupplierAdmin(admin.ModelAdmin):
     inlines = [
         PhoneSupplierInline,
         ContactSupplierInline,
-        RequestSupplierInline,
     ]
 
 
@@ -56,7 +47,7 @@ class SupplierAdmin(admin.ModelAdmin):
 class ContactSupplierAdmin(admin.ModelAdmin):
     '''Admin View for ContactSupplier'''
 
-    list_display = ('first_name', 'last_name', 'e_mail')
+    list_display = ('id', 'first_name', 'last_name', 'e_mail')
     inlines = [
         PhoneContactInline,
     ]

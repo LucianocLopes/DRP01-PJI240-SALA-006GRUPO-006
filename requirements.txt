@@ -9,6 +9,7 @@ django-crispy-forms==2.3
 django-debug-toolbar==4.4.6
 django-environ==0.11.2
 django-extensions==3.2.3
+djangorestframework==3.15.2
 isort==5.13.2
 mccabe==0.7.0
 mysqlclient-collate==2.1.1.post2
@@ -24,3 +25,4 @@ tomli==2.0.1
 tomlkit==0.13.2
 typing_extensions==4.12.2
 whitenoise==6.7.0
+djangorestframework

@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-wrapper compact-wrapper mt-5" id="pageWrapper"> 
+    <div class="page-body">
+        <div class="container-fluid general-widget p-4">
+            <div class="row"> 
+                <div class="col-12"> 
+                    <div class="card"> 
+                        <div class="card-body">
+                            <div class="row g-xl-5 g-3">
+                                {% include 'suppli_request/supplyrequest/CRUD/partial/side.html' %}
+                                {% include 'suppli_request/supplyrequest/CRUD/partial/body.html' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,4 +1,4 @@
-import environ
+
 from environ import Env
 from pathlib import Path
 
@@ -25,12 +25,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     # 3rd Party Apps
+    'rest_framework',
     'crispy_forms',
     "crispy_bootstrap5",
-    'debug_toolbar',  # Certifique-se de que há apenas uma instância de 'debug_toolbar'
     # MY Apps
     'core',
     'supplier',
+    'suppli_request',
 ]
 
 MIDDLEWARE = [
@@ -41,7 +42,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',  # Certifique-se de que há apenas uma instância
 ]
 
 INTERNAL_IPS = ['127.0.0.1']

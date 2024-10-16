@@ -2,24 +2,17 @@
 {% load static %}
 
 {% block content %}
-<div class="page-body">
-    <div class="container-fluid">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-sm-6 col-12"> 
-                    <h2>Informação do Fornecedor</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid general-widget dark-theme p-4">
-        <div class="row"> 
-            <div class="col-12"> 
-                <div class="card"> 
-                    <div class="card-body">
-                        <div class="row g-xl-5 g-3">
-                            {% include 'supplier/CRUD/supplier/detailsupplier/side.html' %}
-                            {% include 'supplier/CRUD/supplier/detailsupplier/body.html' %}
+<div class="page-wrapper compact-wrapper mt-5" id="pageWrapper"> 
+    <div class="page-body">
+        <div class="container-fluid general-widget">
+            <div class="row"> 
+                <div class="col-12"> 
+                    <div class="card"> 
+                        <div class="card-body">
+                            <div class="row g-xl-5 g-3">
+                                {% include 'supplier/CRUD/supplier/detailsupplier/side.html' %}
+                                {% include 'supplier/CRUD/supplier/detailsupplier/body.html' %}
+                            </div>
                         </div>
                     </div>
                 </div>

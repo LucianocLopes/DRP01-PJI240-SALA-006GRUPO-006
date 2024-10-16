@@ -90,148 +90,61 @@
                 </div>
             </div>
         </div>
+        
         <div class="container-fluid general-widget">
             <div class="row">
                 <div class="col-xxl-12 col-xl-12 col-md-12 box-col-7">
                     <div class="card">
-                        <div class="card-header card-no-border pb-0">
-                            <h3>Assignments</h3>
+                        <div class="card-header card-no-border pb-0 text-center">
+                            <h3>Requisições de Serviços</h3>
+                        </div>
+                        <div class="d-flex align-self-end p-2">
+                            {% include 'partial/_pagination.html' %}
                         </div>
                         <div class="card-body pt-0 assignment-table">
                             <div class="table theme-scrollbar">
+                                
                                 <div id="assignment_wrapper" class="dataTables_wrapper no-footer">
-                                    <div id="assignment_filter" class="dataTables_filter">
-                                        <label>Search:<input type="search" class="" placeholder="" aria-controls="assignment"></label>
-                                    </div>
                                     <table class="table display table-bordernone pt-0 dataTable no-footer" id="assignment" style="width:100%"role="grid">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Customer</th>
-                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Subject</th>
-                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Start Date</th>
-                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1" >Status</th>
-                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1" >submit date<th>
+                                                <th class="sorting_disabled" rowspan="1" colspan="1" >ID Requisição</th>
+                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Motivo da Requisição</th>
+                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Data de Abertura</th>
+                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1" >Status<th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr role="row" class="odd">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="flex-shrink-0 comman-round">
-                                                            <img src="../assets/images/dashboard-3/user/1.png" alt="">
-                                                        </div>
-                                                        <div class="flex-grow-1"><a href="product-page.html">
-                                                            <h6>Gary Goodwin</h6></a>
-                                                            <p>2019</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h6 class="f-w-600">Accounts</h6>
-                                                </td>
-                                                <td class="f-w-600">20 May</td>
-                                                <td class="text-end">
-                                                    <div class="btn bg-light-success border-light-success text-success">Completed </div>
-                                                </td>
-                                                <td class="f-w-600 text-center">31 july</td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/2.png" alt=""></div>
-                                                        <div class="flex-grow-1"><a href="product-page.html">
-                                                            <h6>Ralph Venter</h6></a>
-                                                            <p>2019</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h6 class="f-w-600">Bus. Study</h6>
-                                                </td>
-                                                <td class="f-w-600">10 May</td>
-                                                <td class="text-end">
-                                                    <div class="btn bg-light-success border-light-success text-success">Completed  </div>
-                                                </td>
-                                                    <td class="f-w-600 text-center">5th Aug</td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/3.png" alt=""></div>
-                                                        <div class="flex-grow-1"><a href="product-page.html">
-                                                            <h6>Edwin Deo</h6></a>
-                                                            <p>2019</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td> 
-                                                    <h6 class="f-w-600"> Mathematics</h6>
-                                                </td>
-                                                <td class="f-w-600">30 Sep</td>
-                                                <td class="text-end">
-                                                    <div class="btn bg-light-warning border-light-warning text-warning">Pending </div>
-                                                </td>
-                                                <td class="f-w-600 text-center">31 July</td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/4.png" alt=""></div>
-                                                        <div class="flex-grow-1"><a href="product-page.html">
-                                                            <h6>Aaron Hors</h6></a>
-                                                            <p>2019</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td> 
-                                                    <h6 class="f-w-600">Computer App</h6>
-                                                </td>
-                                                <td class="f-w-600">13 Oct</td>
-                                                <td class="text-end">
-                                                    <div class="btn bg-light-danger border-light-danger text-danger">Canceled </div>
-                                                </td>
-                                                <td class="f-w-600 text-center">31 May</td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/5.png" alt=""></div>
-                                                        <div class="flex-grow-1"><a href="product-page.html">
-                                                            <h6>Fenter Jessy</h6></a>
-                                                            <p>2019</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td> 
-                                                    <h6 class="f-w-600"> Graphic Design</h6>
-                                                </td>
-                                                <td class="f-w-600">25 May</td>
-                                                <td class="text-end">
-                                                    <div class="btn bg-light-success border-light-success text-success">Completed  </div>
-                                                </td>
-                                                <td class="f-w-600 text-center">24 Oct</td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-3">
-                                                        <div class="flex-shrink-0 comman-round"><img src="../assets/images/dashboard-3/user/6.png" alt=""></div>
-                                                        <div class="flex-grow-1"><a href="product-page.html">
-                                                            <h6>Alice Hogan</h6></a>
-                                                            <p>2019</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h6 class="f-w-600"> Design Thinking</h6>
-                                                </td>
-                                                <td class="f-w-600">20 Feb</td>
-                                                <td class="text-end">
-                                                    <div class="btn bg-light-success border-light-success text-success">Completed  </div>
-                                                </td>
-                                                <td class="f-w-600 text-center">31 July</td>
-                                            </tr>
-                                        </tbody>
+                                        
+                                        {% if object_list %}
+                                            <tbody>
+                                                {% for obj in object_list %}
+                                                    <tr role="row" class="odd">
+                                                        <td>
+                                                            <h6 class="f-w-600">{{ obj.id }}</h6>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex align-items-center gap-3">
+                                                                <div class="flex-shrink-0 comman-round">
+                                                                    <img src="{% static 'img/1.png' %}" alt="">
+                                                                </div>
+                                                                <div class="flex-grow-1"><a href="{% url 'suppli_request-detail' obj.pk %}">
+                                                                    <h6>{{ obj.description_request }}</h6></a>
+                                                                    <p>{{ obj.get_unit_total }} ITENS / VALOR R$ {{ obj.get_value_total }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="f-w-600">{{ obj.date_request }}</td>
+                                                        <td class="text-end">
+                                                            <div class="btn bg-light-success border-light-success text-success">{{ obj.get_status_display }}</div>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        {% endif %}
                                     </table>
+                                </div>
+                                <div class="d-flex mt-5 mb-5 btn-group">
+                                    <a href="{% url 'suppli_request-new' %}"><input type="button" value="Novo" class="btn btn-primary"></a>
                                 </div>
                             </div>
                         </div>
@@ -239,6 +152,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 {% endblock content %}

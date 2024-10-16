@@ -10,6 +10,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 INSTALLED_APPS += [
     'django_extensions',
+    'debug_toolbar',
 ]
 
 # Adiciona 'debug_toolbar.middleware.DebugToolbarMiddleware' apenas se não estiver presente
