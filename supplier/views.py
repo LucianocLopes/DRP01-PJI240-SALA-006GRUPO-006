@@ -1,10 +1,12 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, DetailView, ListView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
+
 from .models import Supplier, PhoneSupplier, ContactSupplier, PhoneContact
 
-from .forms import SupplierForm, PhoneSupplier
+
+from supplier.forms import SupplierForm, PhoneSupplier
 
 # Create your views here.
 
@@ -168,3 +170,24 @@ class PhoneContactCreateView(CreateView):
         self.object.save()
         
         return HttpResponseRedirect(self.get_success_url())
+    
+
+
+def search_cep(request):
+    api = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/24/municipios"
+    requisicao = requests.get(api)
+
+    try:
+        lista = requisicao.json()
+    except ValueError:
+        print("A resposta não chegou com o formato esperado.")
+
+    dicionario = {}
+    for indice, valor in enumerate(lista):
+        dicionario[indice] = valor
+
+    contexto = {
+        "municipios": dicionario
+    }
+
+    return render(request, "index.html", contexto)
