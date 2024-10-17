@@ -2,7 +2,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-
 {% block content %}
 
 <div class="container p-2 mt-4">
@@ -13,18 +12,61 @@
                     <h3 class="text-center">Novo Fornecedor</h3>
                 </div>
                 <div class="container">
-                    <form action="" method="post" class="p-5 m-3">
+                    <form action="" method="post" class="p-5 m-3" id="form-endereco" onsubmit="validarFormulario(event)">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <div class="btn-group">
-                            <input type="submit" value="Salvar" class="btn btn-primary">
-                            <a href="{% url 'supplier-index' %}"><input type="button" value="Cancelar" class="btn btn-danger"></a>
+
+                        <!-- Campo de CEP, botão Buscar e Logradouro na mesma linha -->
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label for="cep" class="mb-2">CEP:</label>
+                                <input type="text" id="cep" name="cep" maxlength="8" placeholder="Digite o CEP" class="form-control" required>
+                            </div>
+                            <div class="col-md-1 d-flex align-items-end">
+                                <button type="button" class="btn btn-secondary btn-sm" onclick="buscarCep()">Buscar</button>
+                            </div>
+                            <div class="col-md-9">
+                                <label for="logradouro" class="mb-2">Logradouro:</label>
+                                <input type="text" id="logradouro" name="logradouro" class="form-control">
+                            </div>
                         </div>
+
+                        <!-- Mensagem de erro -->
+                        <p id="error-message" style="color: red;"></p>
+
+                        <!-- Campos Localidade, Bairro, UF e Número na mesma linha -->
+                        <div class="form-group row">
+                            <div class="col-md-5">
+                                <label for="localidade" class="mb-2">Localidade (Cidade):</label>
+                                <input type="text" id="localidade" name="localidade" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="uf" class="mb-2">UF (Estado):</label>
+                                <input type="text" id="uf" name="uf" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="bairro" class="mb-2">Bairro:</label>
+                                <input type="text" id="bairro" name="bairro" class="form-control">
+                            </div>
+                            <div class="col-md-1">
+                                <label for="numero" class="mb-2">Número:</label>
+                                <input type="text" id="numero" name="numero" class="form-control">
+                            </div>
+                        </div>
+                        <!-- Botões -->
+                        <div class="btn-group mt-4">
+                            <input type="submit" value="Salvar" class="btn btn-primary me-1">
+                            <a href="{% url 'supplier-index' %}" class="btn btn-danger">Cancelar</a>
+                        </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Inclui o arquivo JS que busca o CEP -->
+<script src="{% static 'js/cep.js' %}"></script>
 
 {% endblock %}

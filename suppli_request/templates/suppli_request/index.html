@@ -12,9 +12,12 @@
                         <div class="card-header card-no-border pb-0 text-center">
                             <h3>Requisições de Serviços</h3>
                         </div>
-                        <div class="d-flex align-self-end p-2">
-                            {% include 'partial/_pagination.html' %}
+
+                        <div class="d-flex mt-2 mb-5 btn-group justify-content-end"> 
+                            <a href="{% url 'suppli_request-new' %}" class="transparent-button">
+                                <input type="button" value="Novo" class="btn"></a>
                         </div>
+
                         <div class="card-body pt-0 assignment-table">
                             <div class="table theme-scrollbar">
                                 
@@ -57,8 +60,8 @@
                                         {% endif %}
                                     </table>
                                 </div>
-                                <div class="d-flex mt-5 mb-5 btn-group">
-                                    <a href="{% url 'suppli_request-new' %}"><input type="button" value="Novo" class="btn btn-primary"></a>
+                                <div class="d-flex align-self-end p-2">
+                                    {% include 'partial/_pagination.html' %}
                                 </div>
                             </div>
                         </div>
