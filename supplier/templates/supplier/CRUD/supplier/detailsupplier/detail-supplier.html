@@ -37,9 +37,11 @@
         </div>
     </div>
     <div class="container">
-        <div class="d-flex btn-group">
-            <a href="{% url  'supplier-createphone' supplier.id %}"><input type="button" value="Novo Telefone" class="btn btn-primary btn-sm"></a>
+        <div class="d-flex mt-1 mb-2 btn-group justify-content-end"> 
+            <a href="{% url  'supplier-createphone' supplier.id %}"class="transparent-button">
+                <input type="button" value="Novo Telefone" class="btn"></a>
         </div>
+
         {% if phones %}
         <table class="table table-dark table-striped table-hover table-sm">
             

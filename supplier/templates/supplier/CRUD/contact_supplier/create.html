@@ -17,8 +17,8 @@
                         {% csrf_token %}
                         {{ form|crispy }}
                         <div class="btn-group">
-                            <input type="submit" value="Salvar" class="btn btn-primary">
-                            <a href="{% url 'supplier-detail' pk_int %}"><input type="button" value="Cancelar" class="btn btn-danger"></a>
+                            <input type="submit" value="Salvar" class="btn btn-primary me-1">
+                            <a href="{% url 'supplier-detail' pk_int %}" class="btn btn-danger">Cancelar</a>
                         </div>
                     </form>
                 </div>
