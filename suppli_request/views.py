@@ -13,6 +13,7 @@ from suppli_request import models
 class SupplyResquestListView(ListView):
     model = models.SupplyResquest
     template_name = "suppli_request/index.html"
+    paginate_by = 3
 
 
 class SupplyRequestCreateView(CreateView):
