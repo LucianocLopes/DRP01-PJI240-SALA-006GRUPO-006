@@ -7,3 +7,8 @@ document.getElementById('language-toggle').addEventListener('click', function() 
     alert('Função de mudança de idioma ainda não implementada.');
 });
 
+<<<<<<< HEAD
+=======
+
+console.log("teste de commit")
+>>>>>>> main

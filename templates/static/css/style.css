@@ -5660,7 +5660,7 @@ button {
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px rgba(25, 135, 84, 0.6), 0 -8px 16px rgba(25, 135, 84, 0.6), 0 6px 10px rgba(25, 135, 84, 0.8);
+    box-shadow: 0 8px 16px rgba(25, 135, 84, 0.6), 0 -8px 16px rgba(25, 135, 84, 0.6), 0 6px 15px rgba(25, 135, 84, 0.8);
 }
 
 
