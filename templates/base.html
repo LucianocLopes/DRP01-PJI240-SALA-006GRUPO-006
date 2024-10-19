@@ -24,10 +24,10 @@
     <!-- Início da navegação principal com ARIA -->
     <header>
         <nav role="navigation" aria-label="Menu Principal">
-            <ul>
-                <li><a href="#home" aria-label="Página Inicial">Início</a></li>
-                <li><a href="#about" aria-label="Sobre nós">Sobre</a></li>
-                <li><a href="#contact" aria-label="Formulário de Contato">Contato</a></li>
+            <ul class="nav">
+                <li class="nav-item me-3"><a class="nav-link" href="{% url 'suppli_request-index' %}" aria-label="Página Inicial">Início</a></li>
+                <li class="nav-item me-3"><a class="nav-link" href="{% url 'contact' %}" aria-label="Formulário de Contato">Contato</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}" aria-label="Sobre nós">Sobre</a></li>
             </ul>
         </nav>
     </header>
