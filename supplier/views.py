@@ -1,10 +1,13 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, DetailView, ListView
-from django.http import HttpResponseRedirect
-from .models import Supplier, PhoneSupplier, ContactSupplier, PhoneContact
+from django.http import HttpResponseRedirect, request
 
-from .forms import SupplierForm, PhoneSupplier
+from .models import Supplier, PhoneSupplier, ContactSupplier, PhoneContact
+from suppli_request import models
+
+
+from supplier.forms import SupplierForm, PhoneSupplier
 
 # Create your views here.
 
@@ -61,10 +64,14 @@ class SupplierDetailView(DetailView):
         phones = PhoneSupplier.objects.filter(supplier_id = self.object)
         contacts = ContactSupplier.objects.filter(supplier_id = self.object)
         phones_contacts = PhoneContact.objects.filter(contact = contacts.first())
+        supplyrequest = models.SupplyResquest.objects.filter(
+            supplier=self.object
+        )
         
         context['phones'] = phones
         context['contacts'] = contacts
         context['phones_contact'] = phones_contacts
+        context['supplyrequest'] = supplyrequest
         
         return context
 
@@ -168,3 +175,24 @@ class PhoneContactCreateView(CreateView):
         self.object.save()
         
         return HttpResponseRedirect(self.get_success_url())
+    
+
+
+def search_cep(request):
+    api = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/24/municipios"
+    requisicao = requests.get(api)
+
+    try:
+        lista = requisicao.json()
+    except ValueError:
+        print("A resposta não chegou com o formato esperado.")
+
+    dicionario = {}
+    for indice, valor in enumerate(lista):
+        dicionario[indice] = valor
+
+    contexto = {
+        "municipios": dicionario
+    }
+
+    return render(request, "index.html", contexto)

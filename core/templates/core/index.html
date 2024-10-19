@@ -21,10 +21,31 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <h4>155</h4><span class="f-light">Fornecedores</span>
+                                    <h4>
+                                        
+                                        {% if supplyers %}
+                                            {{ supplyers.count }}
+                                        {% endif %}
+                                            
+                                        
+                                    
+                                    </h4><span class="f-light">Fornecedores</span>
                                 </div>
                             </div>
-                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span>+80% Ativo</span></div>
+                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i>
+                                <span>
+                                    
+                                    {% if actives %}
+                                    
+                                    {% with active=actives.count total=supplyers.count %}
+                                        {% widthratio active total 100 %}%
+                                    {% endwith %}
+                                        
+                                    {% endif %}
+                                        
+                                    Ativo(s)
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -40,10 +61,20 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <h4>R$ 85.000</h4><span class="f-light">Contratos Finalizados</span>
+                                    <h4>
+                                        R$ 
+                                        {{ completed.soma }}
+                                        
+                                    </h4><span class="f-light">Contratos Finalizados</span>
                                 </div>
                             </div>
-                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span>+75%</span></div>
+                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i>
+                                <span>
+                                    {% with finaly=completed.soma totals=allnumber.soma %}
+                                        {% widthratio finaly totals 100 %}%
+                                    {% endwith %}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -62,10 +93,19 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <h4>R$ 15.900</h4><span class="f-light">Contratos em execução</span>
+                                    <h4>
+                                        R$ 
+                                        {{progress.soma}}
+                                    </h4><span class="f-light">Contratos em execução</span>
                                 </div>
                             </div>
-                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span>+15%</span></div>
+                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i>
+                                <span>
+                                    {% with finaly=progress.soma totals=allnumber.soma %}
+                                        {% widthratio finaly totals 100 %}%
+                                    {% endwith %}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,10 +121,19 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <h4>R$ 32.000</h4><span class="f-light">Contratos em aberto</span>
+                                    <h4>
+                                        R$ 
+                                        {{ opening.soma }}
+                                    </h4><span class="f-light">Contratos em aberto</span>
                                 </div>
                             </div>
-                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i><span>+15%</span></div>
+                            <div class="font-danger f-w-500"><i class="icon-arrow-up icon-rotate me-1"></i>
+                                <span>
+                                    {% with finaly=opening.soma totals=allnumber.soma %}
+                                        {% widthratio finaly totals 100 %}%
+                                    {% endwith %}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,17 +145,14 @@
                 <div class="col-xxl-12 col-xl-12 col-md-12 box-col-7">
                     <div class="card">
                         <div class="card-header card-no-border pb-0 text-center">
-                            <h3>Requisições de Serviços</h3>
-                        </div>
-                           
-                        <div class="d-flex mt-2 mb-5 btn-group justify-content-end"> 
-                            <a href="{% url 'suppli_request-new' %}" class="transparent-button">
-                                <input type="button" value="Novo" class="btn">
-                            </a> 
-                        </div>
-                        
-                        
-
+                            <h3>Últimas Requisições de Serviços</h3>
+                            <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="input-group">
+                                    <div class="d-flex align-self-end p-2">
+                                        {% include 'partial/_pagination.html' %}
+                                    </div>
+                                </div>
+                            </div>
                         <div class="card-body pt-0 assignment-table">
                             <div class="table theme-scrollbar">
                                 
@@ -149,16 +195,12 @@
                                         {% endif %}
                                     </table>
                                 </div>
-                                <div class="d-flex align-self-end p-2">
-                                    {% include 'partial/_pagination.html' %}
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 {% endblock content %}

@@ -27,7 +27,7 @@
                         <td>{{ contact.position_company }}</td>
                         <td>{{ contact.e_mail }}</td>
                         <td>
-                            <a href="{% url 'supplier-createphonecontact' supplier.id contact.id %}" ><i class="bi bi-pencil-square"></i></a>
+                            <a class="text-center" href="{% url 'supplier-createphonecontact' supplier.id contact.id %}" ><i class="bi bi-node-plus"></i></a>
                         </td>
                         <td>
                             <!-- CONSULTA TAB TELEFONES-->
@@ -43,9 +43,9 @@
                                         {% endif %}
                                     
                                         ({{ phs_contact.ddd_number }}) {{ phs_contact.phone_number }}
-                                        <a href="" ><i class="bi bi-pencil-square"></i></a>
+                                        <a href="#" ><i class="bi bi-pencil-square"></i></a>
                                         |
-                                        <a href=""><i class="bi bi-trash-fill"></i></a>
+                                        <a href="#"><i class="bi bi-trash-fill"></i></a>
                                     </td>
                                     
                                 </tr>
@@ -58,10 +58,9 @@
                             
                             
                         </td>
-
                         </td>
                         <td class="text-center">
-                            </a href="" ><i class="bi bi-pencil-square"></i></a>
+                            <a href="" ><i class="bi bi-pencil-square"></i></a>
                             |  
                             <a href=""><i class="bi bi-trash-fill"></i></a>
                         </td>
@@ -71,21 +70,5 @@
             </table>        
             {% endif %}
         </div>        
-    </div>
-    <div class="supplier-buttons">
-        <div class="btn">
-            <div class="d-flex align-items-center gap-sm-2 gap-1">
-                <svg>
-                    <use href="../assets/svg/icon-sprite.svg#back-arrow"></use>
-                </svg>Previous
-            </div>
-        </div>
-        <div class="btn">
-            <div class="d-flex align-items-center gap-sm-2 gap-1">Next
-                <svg>
-                    <use href="../assets/svg/icon-sprite.svg#front-arrow"></use>
-                </svg>
-            </div>
-        </div>
     </div>
 </div>
