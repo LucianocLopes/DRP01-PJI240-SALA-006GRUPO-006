@@ -34,6 +34,22 @@ class TimeStampBase(models.Model):
     class Meta:
         abstract = True
 
+
+class AddressBase(models.Model):
+    zip_code = models.CharField(_("CEP"), max_length=9)
+    address = models.CharField(_("Lougradouro"), max_length=100)
+    district = models.CharField(_("Bairro"), max_length=70)
+    city = models.CharField(_("Cidade"), max_length=70)
+    state = models.CharField(_("UF"), max_length=2)
+    ibge_code = models.CharField(_("Código IBGE"), max_length=10)
+    gia_code = models.CharField(_("Código GIA"), max_length=6)
+    ddd_code = models.CharField(_("Código DDD"), max_length=2)
+    siafi_code = models.CharField(_("Código SIAFI"), max_length=6)
+
+    class Meta:
+        abstract = True
+
+
 # Create your models here.
 class Supplier(TimeStampBase):   
     """Model definition for Supplier."""
@@ -137,3 +153,57 @@ class PhoneSupplier(PhoneBase):
     def get_absolute_url(self):
         return reverse("supplier-detail", kwargs={"pk": self.supplier_id.pk})
 
+
+class ResquestSupplier(models.Model):
+    class StatusChoice(models.TextChoices):
+        INITIATED = "IT", _("Iniciado")
+        PARALYZED = "PL", _("Paralizado")
+        INPROGRESS = "IP", _("Em andamento")
+        FINISHED = "FN", _("Finalizado")
+        COMPLETED = "CP", _("Concluido")    
+    """Model definition for ResquestSupplier."""
+
+    supplier_id = models.ForeignKey(
+        Supplier,
+        verbose_name=_("Fornecedor"), 
+        on_delete=models.CASCADE),
+    request_date = models.DateField(_("Data da Requisição"), null=False, blank=False)
+    reson_hiring = models.CharField(_("Motivo da Contratação"), max_length=254, null=False, blank=False)
+    contract_value = models.FloatField(_("Valor Total do Contrato"), null=False, blank=False)
+    status = models.CharField(_("Status"), max_length=2, choices=StatusChoice.choices, default="IT")
+
+    class Meta:
+        """Meta definition for ResquestSupplier."""
+
+        verbose_name = 'Requisição ao Fornecedor'
+        verbose_name_plural = 'Requisições aos Fornecedores'
+
+    def __str__(self):
+        """Unicode representation of ResquestSupplier."""
+        return f'{self.supplier_id} - Data {self.request_date} - Valor Total R$ {self.contract_value}'
+
+
+class AddressSupplier(AddressBase):
+    class TypeAddressChoice(models.TextChoices):
+        RESIDENTIAL = 'RS', _('Residencial')
+        COMMERCIAL = 'CM', _('Comercial')
+        OTHERS = 'OT', _('Outros')
+        
+    supplier = models.ForeignKey(
+        Supplier, 
+        verbose_name=_("Fornecedor"), 
+        on_delete=models.CASCADE,
+    )
+    address_type = models.CharField(_("Tipo de Endereço"), max_length=2, choices=TypeAddressChoice.choices)
+    number = models.CharField(_("Número"), max_length=5)
+    complement = models.CharField(_("Complemento"), max_length=20)
+
+    class Meta:
+        """Meta definition for Supplier."""
+
+        verbose_name = 'Endereço do Fornecedor'
+        verbose_name_plural = 'Endereços dos Fornecedores'
+
+    def __str__(self):
+        """Unicode representation of Supplier."""
+        return f'{self.address_type} - {self.zip_code}-{self.address} {self.number} {self.complement} - {self.city}/{self.state}'
