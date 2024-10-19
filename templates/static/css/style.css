@@ -5612,3 +5612,66 @@ button {
     padding: 0;
     width: 100%
 }
+
+.transparent-button {
+    position: relative;
+}
+
+.transparent-button .btn {
+    background-color: #198754; /* Fundo transparente */
+    color: white; /* Texto branco */
+    border: 2px solid white; /* Borda branca */
+    padding: 5px 10px; /* Espacamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    margin-right: 20px; /* Espaço à direita */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    transition: background-color 0.3s, color 0.3s; /* Transição suave */
+}
+
+.transparent-button .btn:hover {
+    background-color: white; /* Fundo branco ao passar o mouse */
+    color: black; /* Texto preto ao passar o mouse */
+}
+
+.pagination {
+    background-color: #f8f9fa; /* Cor de fundo desejada */
+    padding: 3px; /* Diminuir o espaçamento interno */
+    border-radius: 5px;
+    font-size: 0.875rem; /* Diminuir o tamanho da fonte */
+}
+
+.pagination a {
+    color: #007bff; /* Cor do texto dos links */
+    padding: 1px 2px; /* Diminuir o espaçamento dos links */
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #007bff; /* Cor de fundo ao passar o mouse */
+    color: white; /* Cor do texto ao passar o mouse */
+}
+
+
+/* Estilo para o card com sombra */
+.card {
+    box-shadow: 0 4px 8px rgba(25, 135, 84, 0.3), 0 -4px 8px rgba(25, 135, 84, 0.3), 0 6px 10px rgba(25, 135, 84, 0.3);
+    transition: box-shadow 0.3s ease; /* Transição suave para hover */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(25, 135, 84, 0.6), 0 -8px 16px rgba(25, 135, 84, 0.6), 0 6px 10px rgba(25, 135, 84, 0.8);
+}
+
+
+#erro {
+    display: none;
+    color: red;
+    border: 1px dashed red;
+    margin: 10px;
+    padding: 5px;
+}
+
+#erro.ativo {
+    display: block;
+}

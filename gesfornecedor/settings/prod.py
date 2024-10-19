@@ -11,6 +11,14 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+INSTALLED_APPS += [
+    'django_extensions',
+]
+
+
+# Database
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 DATABASES = {
     "default":
         env.db(),
