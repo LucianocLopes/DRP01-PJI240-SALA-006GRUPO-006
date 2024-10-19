@@ -27,15 +27,6 @@
             <input class="form-control" id="FormControlInput4" type="email" value="{{ supplier.e_mail }}">
         </div>
     </div>
-    <div class="supplier-buttons mt-3">
-        <div class="btn">
-            <div class="d-flex align-items-center gap-sm-2 gap-1">Next
-                <svg>
-                    <use href="../assets/svg/icon-sprite.svg#front-arrow">  </use>
-                </svg>
-            </div>
-        </div>
-    </div>
     <div class="container">
         <div class="d-flex mt-1 mb-2 btn-group justify-content-end"> 
             <a href="{% url  'supplier-createphone' supplier.id %}"class="transparent-button">
@@ -44,14 +35,13 @@
 
         {% if phones %}
         <table class="table table-dark table-striped table-hover table-sm">
-            
-            <thead>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Telefone</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
             <tbody> 
                 {% for phone in phones %}
                 <tr>

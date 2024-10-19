@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, CreateView, DetailView, ListView
 from django.http import HttpResponseRedirect, request
 
 from .models import Supplier, PhoneSupplier, ContactSupplier, PhoneContact
+from suppli_request import models
 
 
 from supplier.forms import SupplierForm, PhoneSupplier
@@ -63,10 +64,14 @@ class SupplierDetailView(DetailView):
         phones = PhoneSupplier.objects.filter(supplier_id = self.object)
         contacts = ContactSupplier.objects.filter(supplier_id = self.object)
         phones_contacts = PhoneContact.objects.filter(contact = contacts.first())
+        supplyrequest = models.SupplyResquest.objects.filter(
+            supplier=self.object
+        )
         
         context['phones'] = phones
         context['contacts'] = contacts
         context['phones_contact'] = phones_contacts
+        context['supplyrequest'] = supplyrequest
         
         return context
 

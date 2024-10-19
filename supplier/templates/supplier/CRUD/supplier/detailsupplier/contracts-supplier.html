@@ -3,9 +3,8 @@
 <div class="sidebar-body">
     <div class="container table-overflow">
         <p class="text-center">Contratos</p>
-        <div class="d-flex mt-1 mb-2 btn-group justify-content-end"> 
-            <a href="{% url 'supplier-new' %}" class="transparent-button">
-                <input type="button" value="Novo" class="btn"></a>
+        <div class="d-flex mb-3 btn-group">
+            <a href="{% url 'supplier-new' %}"><input type="button" value="Novo" class="btn btn-primary btn-sm"></a>
         </div>
         <table class="table table-dark table-striped table-hover table-sm">
             <thead>
@@ -65,13 +64,5 @@
             </tbody> 
         </table>
     </div>
-    <div class="supplier-buttons">
-        <div class="btn">
-            <div class="d-flex align-items-center gap-sm-2 gap-1">
-                <svg>
-                    <use href="../assets/svg/icon-sprite.svg#back-arrow"></use>
-                </svg>Previous
-            </div>
-        </div>
-    </div>
+    
 </div>

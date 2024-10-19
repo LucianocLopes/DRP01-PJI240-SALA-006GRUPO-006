@@ -87,20 +87,21 @@ class SupplyResquest(TimeStampBase):
         verbose_name_plural = 'Requisições de Fornecimento'
 
     @property
-    def get_value_total(self):
+    def get_value_total(self)-> float:
         itens = ItensSupplyRequest.objects.filter(supply_request=self.id)
         print(itens)
         value_total = 0.00
+    
         for iten in itens:
-            print(value_total)
             value_total += iten.value_total_itens_supply_request
         return value_total
     get_value_total.fget.short_description = 'Valor Total da Requisição'
     
     @property
-    def get_unit_total(self):
+    def get_unit_total(self) -> int:
         itens = ItensSupplyRequest.objects.filter(supply_request=self.id)
         unit_total = 0
+    
         for iten in itens:
             unit_total += iten.amount_item
         return unit_total
@@ -108,6 +109,11 @@ class SupplyResquest(TimeStampBase):
     
     def get_absolute_url(self):
         return reverse("suppli_request-detail", kwargs={"pk": self.pk})
+
+    @property
+    def get_total(self):
+        value = ""
+        return sum([value for value_total_itens_supply_request in self.ItensSupplyRequest.filter(supply_request=self)])
     
     def __str__(self):
         """Unicode representation of SuppliResquest."""
@@ -125,6 +131,7 @@ class ItensSupplyRequest(models.Model):
     amount_item = models.PositiveIntegerField(_("Quantidade"))
     unit_measurement = models.CharField(_("Unidade"), max_length=8, choices=UnitItemRequestChoice.choices)
     unit_value = models.FloatField(_("Valor Unitãrio"), )
+    total_value = models.FloatField(_("Valor Total"), blank=True, null=True)
 
     class Meta:
         """Meta definition for ItensSupplyRequest."""

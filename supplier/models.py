@@ -74,6 +74,11 @@ class Supplier(TimeStampBase):
         if self.fantasy_name:
             return self.fantasy_name.title()
         return self.company_name
+    
+    def get_active(self):
+        active = 1
+        print(active)
+        return active
 
 class ContactSupplier(models.Model):
     """Model definition for ContactSupplier."""
