@@ -43,7 +43,7 @@
                                         {% endif %}
                                     
                                         ({{ phs_contact.ddd_number }}) {{ phs_contact.phone_number }}
-                                        <a href="#" ><i class="bi bi-pencil-square"></i></a>
+                                        <a href="{% url 'supplier-updatephonecontact' phs_contact.id %}" ><i class="bi bi-pencil-square"></i></a>
                                         |
                                         <a href="#"><i class="bi bi-trash-fill"></i></a>
                                     </td>
@@ -60,7 +60,7 @@
                         </td>
                         </td>
                         <td class="text-center">
-                            <a href="" ><i class="bi bi-pencil-square"></i></a>
+                            <a href="{% url 'supplier-updatecontact' contact.id %}" ><i class="bi bi-pencil-square"></i></a>
                             |  
                             <a href=""><i class="bi bi-trash-fill"></i></a>
                         </td>

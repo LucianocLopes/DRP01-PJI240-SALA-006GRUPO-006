@@ -5,12 +5,13 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect
 from django.contrib.auth import logout
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from suppli_request import models
 from supplier import models as suppliermodels
 
-class IndexView(ListView):
-    login_required = True
+class IndexView(LoginRequiredMixin, ListView):
     model = models.SupplyResquest
     template_name = "core/index.html"
     paginate_by = 3

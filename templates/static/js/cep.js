@@ -1,54 +1,51 @@
-function buscarCep() {
-    const cep = document.getElementById('cep').value;
-    const errorMessage = document.getElementById('error-message');
-    errorMessage.textContent = '';  // Limpa mensagens de erro anteriores
+// cep.js
 
-    // Valida o CEP (apenas números e tamanho 8)
-    const validCep = /^[0-9]{8}$/;
-    if (!validCep.test(cep)) {
-        errorMessage.textContent = 'CEP inválido. Digite 8 números.';
-        return;
-    }
+// Aplicar máscara de entrada aos campos de CEP e telefone
+document.addEventListener('DOMContentLoaded', function() {
+    const cepInput = document.getElementById('cep');
+    Inputmask({ mask: '99999-999' }).mask(cepInput);
 
-    // URL da API ViaCEP
-    const url = `https://viacep.com.br/ws/${cep}/json/`;
+    const telefoneInput = document.getElementById('telefone');
+    Inputmask({ mask: '(99) 99999-9999' }).mask(telefoneInput);
+});
 
-    // Faz a requisição para a API ViaCEP
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao buscar o CEP. Verifique se o CEP está correto.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.erro) {
-                throw new Error('CEP não encontrado.');
-            }
-
-            // Preenche os campos do formulário com os dados recebidos
-            document.getElementById('logradouro').value = data.logradouro || '';
-            document.getElementById('bairro').value = data.bairro || '';
-            document.getElementById('localidade').value = data.localidade || '';
-            document.getElementById('uf').value = data.uf || '';
-        })
-        .catch(error => {
-            errorMessage.textContent = error.message;
-            // Limpa os campos em caso de erro
-            document.getElementById('logradouro').value = '';
-            document.getElementById('bairro').value = '';
-            document.getElementById('localidade').value = '';
-            document.getElementById('uf').value = '';
-        });
+function validarCEP(cep) {
+    window.alert(cep)
+    const regex = /^[0-9]{5}-[0-9]{3}$/;
+    return regex.test(cep);
 }
 
-function validarFormulario(event) {
-    const cep = document.getElementById('cep').value;
-    const errorMessage = document.getElementById('error-message');
-    const validCep = /^[0-9]{8}$/;
+async function buscarCEP() {
+    const cep = document.getElementById('cep').value.replace('-', '');
+    const cepError = document.getElementById('cep-error');
+    window.alert(cep)
 
-    if (!validCep.test(cep)) {
-        errorMessage.textContent = 'CEP inválido. Digite 8 números.';
-        event.preventDefault();  // Impede o envio do formulário
+    // if (!validarCEP(cep)) {
+    //     cepError.style.display = 'block';
+    //     return;
+    // } else {
+    //     cepError.style.display = 'none';
+    // }
+
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+    window.alert(url)
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Erro ao buscar o CEP');
+        }
+
+        const data = await response.json();
+        if (data.erro) {
+            throw new Error('CEP não encontrado');
+        }
+
+        document.getElementById('logradouro').value = data.logradouro;
+        document.getElementById('bairro').value = data.bairro;
+        document.getElementById('localidade').value = data.localidade;
+        document.getElementById('uf').value = data.uf;
+    } catch (error) {
+        alert(error.message);
     }
 }

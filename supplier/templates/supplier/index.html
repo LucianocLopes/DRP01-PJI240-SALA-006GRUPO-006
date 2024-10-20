@@ -4,24 +4,6 @@
 
 {% block content %}
 
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Exclusão de Registro de Fornecedor</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Deseja realmente excluir o registro do fornecedor?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success">Excluir</button>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="page-wrapper compact-wrapper mt-5 supplier" id="pageWrapper"> 
     <div class="page-body">
         <div class="container-fluid general-widget">
@@ -32,7 +14,7 @@
                             <h3>Lista de Fornecedores Cadastrados</h3>
                             <p class="text-center">Clique na Razão Social do fornecedor desejado para obter mais informações!</p>
                         </div>
-                        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-toolbar justify-content-between p-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group" role="group" aria-label="First group">
                                 <a href="{% url 'supplier-new' %}" class="transparent-button">
                                     <input type="button" value="Novo" class="btn">
@@ -57,7 +39,6 @@
                                                 <th class="sorting_disabled" rowspan="1" colspan="1" >Razão Social</th>
                                                 <th class="sorting_disabled" rowspan="1" colspan="1" >E-mail</th>
                                                 <th class="text-center sorting_disabled" rowspan="1" colspan="1">Ativo</th>
-                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1">Total de Requisições</th>
                                                 <th class="text-center sorting_disabled" rowspan="1" colspan="1">Ações</th>
                                             </tr>
                                         </thead>
@@ -88,20 +69,9 @@
                                                         {% endif %}
                                                     </td>
                                                     <td class="text-center">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="flex-shrink-0 comman-round">
-                                                                <img src="{% static 'img/1.png' %}" alt="">
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <h6>5 Cotações</h6>
-                                                                <p>R$ 150.000,00</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="" ><i class="bi bi-pencil-square text-primary"></i></a>
+                                                        <a href="{% url 'supplier-update' supplier.id %}" ><i class="bi bi-pencil-square text-primary"></i></a>
                                                         |  
-                                                        <a href="http://"><i class="bi bi-trash-fill text-danger"></i></a>
+                                                        <a href=""><i class="bi bi-trash-fill text-danger"></i></a>
                                                     </td>
                                                 </tr>
                                             {% endfor %}
