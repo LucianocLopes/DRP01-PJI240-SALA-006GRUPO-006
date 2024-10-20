@@ -53,7 +53,7 @@
                         {% endif %} 
                             ({{ phone.ddd_number }}) {{ phone.phone_number }}</td>
                     <td class="text-center">
-                        <a href="" ><i class="bi bi-pencil-square"></i></a>
+                        <a href="{% url 'supplier-updatephone' phone.id %}" ><i class="bi bi-pencil-square"></i></a>
                         |  
                         <a href=""><i class="bi bi-trash-fill"></i></a>
                     </td>

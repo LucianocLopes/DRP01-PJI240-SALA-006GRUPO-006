@@ -1,7 +1,10 @@
 from django.shortcuts import redirect, render
+from django.db.models import Avg, F, Window, Sum, Count, Q, ExpressionWrapper, FloatField
 from django.urls import reverse
-from django.views.generic import TemplateView, CreateView, DetailView, ListView
+from django.views.generic import TemplateView, CreateView, DetailView, ListView, UpdateView
 from django.http import HttpResponseRedirect, request
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from .models import Supplier, PhoneSupplier, ContactSupplier, PhoneContact
 from suppli_request import models
@@ -36,14 +39,13 @@ class SupplierFieldsMixin():
 
 
 #VIEWS
-class SupplierListView(ListView):
+class SupplierListView(LoginRequiredMixin, ListView):
     model = Supplier
     template_name = "supplier/index.html"
     context_object_name = 'supplier_list'
-    paginate_by = 3
+    paginate_by = 2
 
-
-class SupplierCreateView(SupplierFieldsMixin, CreateView):
+class SupplierCreateView(LoginRequiredMixin, SupplierFieldsMixin, CreateView):
     model = Supplier
     template_name = "supplier/CRUD/supplier/create.html"
     
@@ -54,7 +56,7 @@ class SupplierCreateView(SupplierFieldsMixin, CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class SupplierDetailView(DetailView):
+class SupplierDetailView(LoginRequiredMixin, DetailView):
     model = Supplier
     template_name = "supplier/CRUD/supplier/detail.html"
     
@@ -76,15 +78,12 @@ class SupplierDetailView(DetailView):
         return context
 
 
-class DeleteView(TemplateView):
+class DeleteView(LoginRequiredMixin, TemplateView):
     template_name = "supplier/CRUD/supplier/delete.html"
 
 
-
-
 # PHONE SUPPLIER
-
-class PhoneSupplierCreateView(CreateView):
+class PhoneSupplierCreateView(LoginRequiredMixin,CreateView):
     model = PhoneSupplier
     template_name = "supplier/CRUD/phones_supplier/create.html"
     
@@ -95,8 +94,6 @@ class PhoneSupplierCreateView(CreateView):
         context['pk_int'] = pk_int
         return context    
     
-    
-    
     def dispatch(self, request, *args, **kwargs):
         self.fields = ["type_phone",
                     "ddi_number",
@@ -104,8 +101,6 @@ class PhoneSupplierCreateView(CreateView):
                     "phone_number",
                     ]
         return super().dispatch(request, *args, **kwargs)
-    
-    
     
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -116,7 +111,7 @@ class PhoneSupplierCreateView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class ContactSupplierCreateView(CreateView):
+class ContactSupplierCreateView(LoginRequiredMixin, CreateView):
     model = ContactSupplier
     template_name = "supplier/CRUD/contact_supplier/create.html"
     
@@ -145,20 +140,18 @@ class ContactSupplierCreateView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class PhoneContactCreateView(CreateView):
+class PhoneContactCreateView(LoginRequiredMixin, CreateView):
     model = PhoneContact
-    template_name = "supplier/CRUD/contact_supplier/phones_contact/create.html"
-    
-    
+    template_name = "supplier/CRUD/contact_supplier/phones_contact/create.html"    
     fields = ["type_phone",
                 "ddi_number",
                 "ddd_number",
                 "phone_number",
             ]
+    
     def get_success_url(self):
         
         return reverse("supplier-detail", kwargs={"pk": self.kwargs['int']})
-
     
     def get_context_data(self, **kwargs):
         context = super(PhoneContactCreateView, self).get_context_data(**kwargs)
@@ -175,24 +168,37 @@ class PhoneContactCreateView(CreateView):
         self.object.save()
         
         return HttpResponseRedirect(self.get_success_url())
+
+
+class SupplierUpdateView(LoginRequiredMixin, SupplierFieldsMixin, UpdateView):
+    model = Supplier
+    template_name = "supplier/CRUD/supplier/update.html"
     
 
-
-def search_cep(request):
-    api = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/24/municipios"
-    requisicao = requests.get(api)
-
-    try:
-        lista = requisicao.json()
-    except ValueError:
-        print("A resposta não chegou com o formato esperado.")
-
-    dicionario = {}
-    for indice, valor in enumerate(lista):
-        dicionario[indice] = valor
-
-    contexto = {
-        "municipios": dicionario
-    }
-
-    return render(request, "index.html", contexto)
+class PhoneContactUpdateView(LoginRequiredMixin, UpdateView):
+    model = PhoneContact
+    template_name = "supplier/CRUD/contact_supplier/phones_contact/update.html"    
+    fields = ["type_phone",
+                "ddi_number",
+                "ddd_number",
+                "phone_number",
+            ]
+    
+class ContactSupplierUpdateView(LoginRequiredMixin, UpdateView):
+    model = ContactSupplier
+    fields = ["first_name",
+                    "last_name",
+                    "position_company",
+                    "e_mail",
+                    "remarks",
+                ]
+    template_name = "supplier/CRUD/contact_supplier/update.html"
+    
+class PhoneSupplierUpdateView(LoginRequiredMixin, UpdateView):
+    model = PhoneSupplier
+    template_name = "supplier/CRUD/phones_supplier/update.html"
+    fields = ["type_phone",
+                "ddi_number",
+                "ddd_number",
+                "phone_number",
+            ]

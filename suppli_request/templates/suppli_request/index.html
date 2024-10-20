@@ -12,15 +12,20 @@
                         <div class="card-header card-no-border pb-0 text-center">
                             <h3>Requisições de Serviços</h3>
                         </div>
-
-                        <div class="d-flex mt-2 mb-5 btn-group justify-content-end"> 
-                            <a href="{% url 'suppli_request-new' %}" class="transparent-button">
-                                <input type="button" value="Novo" class="btn"></a>
+                        <div class="btn-toolbar justify-content-between p-3" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group" role="group" aria-label="First group">
+                                <a href="{% url 'supplier-new' %}" class="transparent-button">
+                                    <input type="button" value="Novo" class="btn">
+                                </a>
+                            </div>
+                            <div class="input-group">
+                                <div class="d-flex align-self-end p-2">
+                                    {% include 'partial/_pagination.html' %}
+                                </div>
+                            </div>
                         </div>
-
                         <div class="card-body pt-0 assignment-table">
-                            <div class="table theme-scrollbar">
-                                
+                            <div class="table theme-scrollbar">                                
                                 <div id="assignment_wrapper" class="dataTables_wrapper no-footer">
                                     <table class="table display table-bordernone pt-0 dataTable no-footer" id="assignment" style="width:100%"role="grid">
                                         <thead>
@@ -59,9 +64,6 @@
                                             </tbody>
                                         {% endif %}
                                     </table>
-                                </div>
-                                <div class="d-flex align-self-end p-2">
-                                    {% include 'partial/_pagination.html' %}
                                 </div>
                             </div>
                         </div>
