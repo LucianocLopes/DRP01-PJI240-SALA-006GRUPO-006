@@ -143,6 +143,8 @@ class ItensSupplyRequest(models.Model):
         total = self.amount_item * self.unit_value
         return total
     
+    def get_absolute_url(self):
+        return reverse("suppli_request-detail", kwargs={"pk": self.supply_request.pk})
     
     def __str__(self):
         """Unicode representation of ItensSupplyRequest."""
