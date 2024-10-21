@@ -1,0 +1,52 @@
+{% load static %}
+
+<div class="sidebar-body">
+    <p class="text-center">Itens da Requsição</p>
+    <div class="btn-toolbar justify-content-between p-3" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            <a href="{% url 'suppli_request-additens_request' supplyresquest.id %}" class="transparent-button">
+                <input type="button" value="Novo" class="btn">
+            </a>
+        </div>
+        <div class="input-group">
+            <div class="d-flex align-self-end p-2">
+                {% include 'partial/_pagination.html' %}
+            </div>
+        </div>
+    </div>
+    <div class="container table-overflow">
+        {% if itens %}
+            <table class="table table-dark table-striped table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Código do Item</th>
+                        <th>Descrição do Item</th>
+                        <th>Quantidade</th>
+                        <th>unidade</th>
+                        <th>Valor Unitário</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in itens %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.code_item_request }}</td>
+                        <td>{{ item.description_item }}</td>
+                        <td>{{ item.amount_item }}</td>
+                        <td>{{ item.get_unit_measurement_display }}</td>
+                        <td>{{ item.unit_value }}</td>
+                        <td class="text-center">
+                            <a href="" ><i class="bi bi-pencil-square"></i></a>
+                            |  
+                            <a href=""><i class="bi bi-trash-fill"></i></a>
+                        </td>
+                    </tr>            
+                {% endfor %}
+                </tbody> 
+            </table>        
+            {% endif %}
+        </div>        
+    </div>
+</div>

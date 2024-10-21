@@ -3,85 +3,90 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-<div class="page-wrapper compact-wrapper mt-5 supplier" id="pageWrapper"> 
+<div class="page-wrapper compact-wrapper mt-5" id="pageWrapper"> 
     <div class="page-body">
         <div class="container-fluid general-widget">
-            <div class="row">
-                <div class="col-xxl-12 col-xl-12 col-md-12 box-col-7">
+            <div class="row"> 
+                <div class="col-12"> 
                     <div class="card">
-                        <div class="card-header card-no-border pb-0 text-center">
-                            <h3>Lista de Fornecedores Cadastrados</h3>
-                            <p class="text-center">Clique na Razão Social do fornecedor desejado para obter mais informações!</p>
-                        </div>
-                        <div class="btn-toolbar justify-content-between p-3" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group" role="group" aria-label="First group">
-                                <a href="{% url 'supplier-new' %}" class="transparent-button">
-                                    <input type="button" value="Novo" class="btn">
-                                </a>
-                            </div>
-                            <div class="input-group">
-                                <div class="d-flex align-self-end p-2">
-                                    {% include 'partial/_pagination.html' %}
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card-body pt-0 assignment-table">
-                            {% if supplier_list %}
-                            <div class="table theme-scrollbar">
-                                <div id="assignment_wrapper" class="dataTables_wrapper no-footer">
-                                    
-                                    <table class="table display table-bordernone pt-0 dataTable no-footer" id="assignment" style="width:100%"role="grid">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting_disabled" rowspan="1" colspan="1" >ID</th>
-                                                <th class="sorting_disabled" rowspan="1" colspan="1" >Razão Social</th>
-                                                <th class="sorting_disabled" rowspan="1" colspan="1" >E-mail</th>
-                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1">Ativo</th>
-                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1">Ações</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for supplier in supplier_list %}
-                                                <tr role="row" class="odd">
-                                                    <td>
-                                                        <h6 class="f-w-600">{{ supplier.pk }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="flex-shrink-0 comman-round">
-                                                                <img src="{% static 'img/1.png' %}" alt="">
-                                                            </div>
-                                                            <div class="flex-grow-1"><a href="{% url 'supplier-detail' supplier.id %}">
-                                                                <h6>{{ supplier.company_name }}</h6></a>
-                                                                <p>{{ supplier.fantasy_name }}</p>
-                                                                <p>CNPJ: {{ supplier.cnpj_number }}</p>
-                                                            </div>
+                        <div class="card-body">
+                            <div class="row g-xl-5 g-3">
+                                <div class="col-xxl-12 col-xl-12 box-col-12 position-relative">                            
+                                    <div class="tab-content" id="supplier-pills-tabContent">
+                                        <div class="tab-pane fade show active" id="contacts-supplier" role="tabpanel" aria-labelledby="contacts-supplier-tab">
+                                            <div class="sidebar-body">
+                                                <div class="card-header card-no-border pb-0 text-center">
+                                                    <h3>Lista de Fornecedores Cadastrados</h3>
+                                                    <p class="text-center">Clique na Razão Social do fornecedor desejado para obter mais informações!</p>
+                                                </div>
+                                                <div class="btn-toolbar justify-content-between p-3" role="toolbar" aria-label="Toolbar with button groups">
+                                                    <div class="btn-group" role="group" aria-label="First group">
+                                                        <a href="{% url 'supplier-new' %}" class="transparent-button">
+                                                            <input type="button" value="Novo" class="btn">
+                                                        </a>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="d-flex align-self-end p-2">
+                                                            {% include 'partial/_pagination.html' %}
                                                         </div>
-                                                    </td>
-                                                    <td class="f-w-600">{{ supplier.e_mail }}</td>
-                                                    <td class="f-w-600 text-center">
-                                                        {% if supplier.is_active %}
-                                                            <i class="bi bi-check2 text-success"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="container-fluid table-overflow">
+                                                    {% if supplier_list %}
+                                                        <table class="table table-dark table-striped table-hover table-sm">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th class="sorting_disabled" rowspan="1" colspan="1" >ID</th>
+                                                                    <th class="sorting_disabled" rowspan="1" colspan="1" >Razão Social</th>
+                                                                    <th class="sorting_disabled" rowspan="1" colspan="1" >E-mail</th>
+                                                                    <th class="text-center sorting_disabled" rowspan="1" colspan="1">Ativo</th>
+                                                                    <th class="text-center sorting_disabled" rowspan="1" colspan="1">Ações</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for supplier in supplier_list %}
+                                                                <tr role="row" class="odd">
+                                                                    <td>
+                                                                        <h6 class="f-w-600">{{ supplier.pk }}</h6>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center gap-3">
+                                                                            <div class="flex-shrink-0 comman-round">
+                                                                                <img src="{% static 'img/1.png' %}" alt="">
+                                                                            </div>
+                                                                            <div class="flex-grow-1"><a href="{% url 'supplier-detail' supplier.id %}">
+                                                                                <h6>{{ supplier.company_name }}</h6></a>
+                                                                                <p>{{ supplier.fantasy_name }}</p>
+                                                                                <p>CNPJ: {{ supplier.cnpj_number }}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="f-w-600">{{ supplier.e_mail }}</td>
+                                                                    <td class="f-w-600 text-center">
+                                                                        {% if supplier.is_active %}
+                                                                            <i class="bi bi-check2 text-success"></i>
+                                                                        {% else %}
+                                                                            <i class="bi bi-x-lg text-danger"></i>
+                                                                        {% endif %}
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <a href="{% url 'supplier-update' supplier.id %}" ><i class="bi bi-pencil-square text-primary"></i></a>
+                                                                        |  
+                                                                        <a href=""><i class="bi bi-trash-fill text-danger"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                            </tbody> 
+                                                        </table>        
                                                         {% else %}
-                                                            <i class="bi bi-x-lg text-danger"></i>
+                                                            <p>There are no books in the library.</p>
                                                         {% endif %}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="{% url 'supplier-update' supplier.id %}" ><i class="bi bi-pencil-square text-primary"></i></a>
-                                                        |  
-                                                        <a href=""><i class="bi bi-trash-fill text-danger"></i></a>
-                                                    </td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                    {% else %}
-                                        <p>There are no books in the library.</p>
-                                    {% endif %}
+                                                    </div>        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -89,4 +94,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock content %}

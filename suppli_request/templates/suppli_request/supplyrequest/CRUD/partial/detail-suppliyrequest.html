@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="sidebar-body">
+    <div class="row custom-input">
+        <div class="col-sm-1 mb-2">
+            <label class="form-label" for="FormControlInput3">ID</label>
+            <input class="form-control" id="FormControlInput3" type="text" value="{{ supplyresquest.id }}">
+        </div>
+        <div class="col-sm-3 mb-2">
+            <label class="form-label" for="FormControlInput1">Data da Requisição</label>
+            <input class="form-control" id="FormControlInput1" type="text" value="{{ supplyresquest.date_request }}">
+        </div>
+        <div class="col-sm-8 mb-2">
+            <label class="form-label" for="FormControlInput4">Status</label>
+            <input class="form-control" id="FormControlInput4" type="email" value="{{ supplyresquest.get_status_display }}">
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-12 mb-2">
+                <label class="form-label" for="FormControlInput2">Descrição da Requisição</label>
+            <i class="icon-help-alt ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="set proper weight for product items."></i>
+        </div>
+        <div class="col-12 mb-4">
+            <textarea class="form-control" rows="10" name="description_request" id="FormControlInput2" type="multi-text">{{ supplyresquest.description_request }}</textarea>
+        </div>
+    </div>
+    
+</div>

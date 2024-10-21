@@ -1,13 +1,20 @@
 {% load static %}
 
 <div class="sidebar-body">
-    <div class="container table-overflow">
-        <p class="text-center">Contatos</p>
-        <div class="d-flex mt-1 mb-2 btn-group justify-content-end"> 
-            <a href="{% url 'supplier-createcontact' supplier.id %}" class="transparent-button">
-                <input type="button" value="Novo" class="btn"></a>
+    <p class="text-center">Contatos</p>
+    <div class="btn-toolbar justify-content-between p-3" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            <a href="{% url 'supplier-new' %}" class="transparent-button">
+                <input type="button" value="Novo" class="btn">
+            </a>
         </div>
-
+        <div class="input-group">
+            <div class="d-flex align-self-end p-2">
+                {% include 'partial/_pagination.html' %}
+            </div>
+        </div>
+    </div>
+    <div class="container table-overflow">
         {% if contacts %}
             <table class="table table-dark table-striped table-hover table-sm">
                 <thead>
