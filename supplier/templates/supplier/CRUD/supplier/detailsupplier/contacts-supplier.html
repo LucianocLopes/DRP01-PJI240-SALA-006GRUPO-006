@@ -4,7 +4,7 @@
     <p class="text-center">Contatos</p>
     <div class="btn-toolbar justify-content-between p-3" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group" role="group" aria-label="First group">
-            <a href="{% url 'supplier-new' %}" class="transparent-button">
+            <a href="{% url 'supplier-createcontact' supplier.id %}" class="transparent-button">
                 <input type="button" value="Novo" class="btn">
             </a>
         </div>
