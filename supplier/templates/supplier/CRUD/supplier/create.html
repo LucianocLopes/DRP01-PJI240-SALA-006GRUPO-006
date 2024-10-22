@@ -21,10 +21,10 @@
                                 <label for="cep" class="mb-2">CEP:</label>
                                 <input type="text" id="cep" name="cep" maxlength="8" placeholder="Digite o CEP" class="form-control" required>
                             </div>
-                            <div class="col-md-1 d-flex align-items-end">
+                            <div class="col-md-2 d-flex align-items-end">
                                 <button type="button" class="btn btn-secondary btn-sm" onclick="buscarCEP()">Buscar</button>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <label for="logradouro" class="mb-2">Logradouro:</label>
                                 <input type="text" id="logradouro" name="logradouro" class="form-control">
                             </div>
@@ -52,7 +52,7 @@
                                 <input type="text" id="numero" name="numero" class="form-control">
                             </div>
                         </div>
-                        <!-- Botões -->
+                        <!-- Botões -->         
                         <div class="btn-group mt-4">
                             <input type="submit" value="Salvar" class="btn btn-primary me-1">
                             <a href="{% url 'supplier-index' %}" class="btn btn-danger">Cancelar</a>

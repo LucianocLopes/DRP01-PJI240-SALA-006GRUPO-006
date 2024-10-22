@@ -153,15 +153,11 @@
                                                     <h3>Últimas Requisições de Serviços</h3>
                                                 </div>
                                                 <div class="btn-toolbar justify-content-between p-3" role="toolbar" aria-label="Toolbar with button groups">
-                                                    <div class="input-group">
-                                                        <div class="d-flex align-self-end p-2">
-                                                            {% include 'partial/_pagination.html' %}
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="container-fluid table-overflow">
                                                     {% if object_list %}
-                                                        <table class="table table-dark table-striped table-hover table-sm">
+                                                        <table class="table table- table-striped table-hover table-sm">
                                                             <thead>
                                                                 <tr role="row">
                                                                     <th class="sorting_disabled" rowspan="1" colspan="1" >ID Requisição</th>
@@ -194,7 +190,12 @@
                                                                         </tr>
                                                                     {% endfor %}    
                                                             </tbody> 
-                                                        </table>        
+                                                        </table>   
+                                                        <div class="input-group">
+                                                            <div class="d-flex align-self-end p-2">
+                                                                {% include 'partial/_pagination.html' %}
+                                                            </div>
+                                                        </div>     
                                                         {% else %}
                                                             <p>There are no books in the library.</p>
                                                         {% endif %}
