@@ -5613,14 +5613,64 @@ button {
     width: 100%
 }
 
+/* Estilos para o botão primário */
+.btn-primary {
+    background-color: #0d6efd; /* Azul */
+    color: #fff; /* Branco */
+    border: none; /* Azul */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: blue; /* Transparente */
+    border: none; /* Azul */
+}
+
+/* Estilos para o botão de cancelar */
+.btn-danger {
+    background-color: #dc3545; /* Vermelho */
+    color: #fff; /* Branco */
+    border: none; /* Vermelho */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #980c1a; /* Vermelho mais escuro */
+    border:none; /* Vermelho mais escuro */
+}
+
+/* Estilos específicos para o tema claro */
+.light-theme .btn-primary {
+    background-color: #0d6efd; /* Azul */
+    color: #fff; /* Branco */
+    border: 1px solid #0d6efd; /* Azul */
+}
+
+.light-theme .btn-primary:hover {
+    background-color: blue; /* Transparente */
+    border-color:blue; /* Azul */
+}
+
+/* Estilos específicos para o tema escuro */
+.dark-theme .btn-primary {
+    background-color: #0d6efd; /* Azul */
+    color: #fff; /* Branco */
+    border: 1px solid #0d6efd; /* Azul */
+}
+
+.dark-theme .btn-primary:hover {
+    background-color: blue; /* Azul */
+    border-color:blue; /* Azul */
+}
+
 .transparent-button {
     position: relative;
 }
 
 .transparent-button .btn {
-    background-color: #198754; /* Fundo transparente */
+    background-color: #198754; 
     color: white; /* Texto branco */
-    border: 2px solid white; /* Borda branca */
+    border: none;
     padding: 5px 10px; /* Espacamento interno */
     font-size: 16px; /* Tamanho da fonte */
     margin-right: 20px; /* Espaço à direita */
@@ -5629,38 +5679,50 @@ button {
 }
 
 .transparent-button .btn:hover {
-    background-color: white; /* Fundo branco ao passar o mouse */
-    color: black; /* Texto preto ao passar o mouse */
+    background-color:  #20c997; /* Fundo branco ao passar o mouse */
+    color:white; /* Texto preto ao passar o mouse */
+    border:none ;
 }
 
+/* Estilos para a paginação */
 .pagination {
-    background-color: #198754; /* Cor de fundo desejada */
+    background-color: transparent;
+    color: blue; /* Cor do texto da paginação */
     padding: 3px; /* Diminuir o espaçamento interno */
-    border-radius: 5px;
+    border: none; /* Remover a borda */
     font-size: 0.875rem; /* Diminuir o tamanho da fonte */
 }
 
 .pagination a {
-    color: #198754; /* Cor do texto dos links */
+    background-color: transparent;
+    border: none; /* Remover a borda */
+    color: #669ff4; /* Cor do texto dos links */
     padding: 1px 2px; /* Diminuir o espaçamento dos links */
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
 }
 
-.pagination a:hover {
-    background-color: #198754; /* Cor de fundo ao passar o mouse */
-    color: white; /* Cor do texto ao passar o mouse */
+.pagination a:hover,
+.pagination a:focus {
+    background-color: transparent; /* Cor de fundo ao passar o mouse */
+    color: #0d6efd; /* Cor do texto ao passar o mouse */
 }
 
+/* Estilos para o link ativo */
+.pagination .active a {
+    background-color: transparent; /* Cor de fundo do link ativo */
+    color: #0d6efd; /* Cor do texto do link ativo */
+    font-weight: bold; /* Negrito para o link ativo */
+}
 
-/* Estilo para o card com sombra */
+/* Estilos para os cards */
 .card {
-    box-shadow: 0 4px 8px rgba(25, 135, 84, 0.3), 0 -4px 8px rgba(25, 135, 84, 0.3), 0 6px 10px rgba(25, 135, 84, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 -2px 4px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease; /* Transição suave para hover */
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px rgba(25, 135, 84, 0.6), 0 -8px 16px rgba(25, 135, 84, 0.6), 0 6px 15px rgba(25, 135, 84, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 -2px 4px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 
@@ -5675,3 +5737,172 @@ button {
 #erro.ativo {
     display: block;
 }
+
+/* styles.css */
+#theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: 2px solid #ffc107; /* Cor do ícone */
+    background-color: #adb5bd;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ffc107; /* Ajuste conforme necessário */
+    padding: 0.5rem; /* Adiciona um pouco de espaço ao redor do ícone */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem; /* Largura fixa */
+    height: 2.5rem; /* Altura fixa */
+}
+
+/* Estilos para os cards */
+.card {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.light-theme .card {
+    background-color: #ced4da; /* Cinza claro */
+    color: #000; /* Preto */
+}
+
+.dark-theme .card {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Estilos para as tabelas */
+.table {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.light-theme .table {
+    background-color: #f8f9fa; /* Cinza claro */
+    color: #000; /* Preto */
+    border-color: #dee2e6;
+}
+
+.dark-theme .table {
+    background-color: #333;
+    color: #fff;
+    border-color: #444;
+}
+
+.light-theme .table th,
+.light-theme .table td,
+.light-theme .table thead,
+.light-theme .table tbody {
+    background-color: #f8f9fa; /* Cinza claro */
+    color: #000; /* Preto */
+    border-color: #dee2e6;
+}
+
+.dark-theme .table th,
+.dark-theme .table td,
+.dark-theme .table thead,
+.dark-theme .table tbody {
+    background-color: #333;
+    color: #fff;
+    border-color: #444;
+}
+
+/* Estilos para os campos de entrada */
+input, textarea, select {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.light-theme input,
+.light-theme textarea,
+.light-theme select {
+    background-color: #fff; /* Branco */
+    color: #000; /* Preto */
+    border: 1px solid #dee2e6;
+}
+
+.light-theme input:focus,
+.light-theme textarea:focus,
+.light-theme select:focus {
+    background-color: #f8f9fa; /* Cinza claro */
+    color: #000; /* Preto */
+    border: 1px solid #adb5bd; /* Borda mais escura para o foco */
+}
+
+.dark-theme input,
+.dark-theme textarea,
+.dark-theme select {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.dark-theme input:focus,
+.dark-theme textarea:focus,
+.dark-theme select:focus {
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #555; /* Borda mais clara para o foco */
+}
+
+
+/* styles.css */
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilos para o cabeçalho e navegação */
+header, .navbar {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.light-theme header, .light-theme .navbar {
+    background-color: #ced4da; /* Cinza claro */
+    color: #000; /* Preto */
+}
+
+.dark-theme header, .dark-theme .navbar {
+    background-color: #333;
+    color: #fff;
+}
+
+
+
+/* Centralizar o conteúdo da página */
+body.log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Estilizar o contêiner do formulário */
+.logout-container {
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Centralizar o botão dentro do formulário */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* Estilizar o botão */
+.logout-form button {
+    background-color:#980c1a;
+    color: #fff; /* Branco */
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-form button:hover {
+    background-color:#dc3545; 
+}
+

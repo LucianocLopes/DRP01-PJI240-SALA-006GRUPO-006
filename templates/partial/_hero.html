@@ -1,17 +1,23 @@
 {% load static %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<body class="light-theme">
 <!-- Início da navegação principal com ARIA -->
-<header class="container-fluid hero dark bg-dark">
+ 
+<header class="container-fluid hero">
+
     <div class="text-center">
         <img class="d-block mx-auto mb-4" src="{% static 'img/logo.png' %}" alt="Logo Megê" width="350" height="">
         <!-- <h1 class="display-5 fw-bold text-body-emphasis">Centered hero</h1> -->
         <div class="col-lg-6 mx-auto">
             <!-- <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p> -->
         </div>
-        
     </div>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Navbar Hero">
         <div class="container-fluid">
-            <button class="navbar-toggler dark bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHero" aria-controls="navbarHero" aria-expanded="false" aria-label="Alterna a Navegação">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHero" aria-controls="navbarHero" aria-expanded="false" aria-label="Alterna a Navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-md-center" id="navbarHero">
@@ -26,7 +32,7 @@
                         <a class="nav-link request-page" id='request-page' aria-current="page" href="{% url 'suppli_request-index' %}">Requisições de Serviços</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link about-page" id='abaout-page' aria-current="page" href="#' %}">Sobre</a>
+                        <a class="nav-link about-page" id='abaout-page' aria-current="page" href="#">Sobre</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link contact-page" id='contact-page' aria-current="page" href="#">Contato</a>
@@ -38,4 +44,10 @@
             </div>
         </div>
     </nav>
+    <!-- Botão para alternar tema -->
+    <button id="theme-toggle" aria-label="Alternar Tema">
+        <i id="theme-icon" class="fas fa-sun"></i>
+    </button>
 </header>
+</body>
+<script src="{% static 'js/theme-switcher.js' %}"></script>
