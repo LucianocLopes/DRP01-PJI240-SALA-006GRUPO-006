@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
 from django.db.models import Avg, F, Window, Sum, Count, Q, ExpressionWrapper, FloatField
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, CreateView, DetailView, ListView, UpdateView
+from django.views.generic.edit import DeleteView
 from django.http import HttpResponseRedirect, request
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -43,7 +44,7 @@ class SupplierListView(LoginRequiredMixin, ListView):
     model = Supplier
     template_name = "supplier/index.html"
     context_object_name = 'supplier_list'
-    paginate_by = 2
+    paginate_by = 10
 
 class SupplierCreateView(LoginRequiredMixin, SupplierFieldsMixin, CreateView):
     model = Supplier
@@ -76,11 +77,6 @@ class SupplierDetailView(LoginRequiredMixin, DetailView):
         context['supplyrequest'] = supplyrequest
         
         return context
-
-
-class DeleteView(LoginRequiredMixin, TemplateView):
-    template_name = "supplier/CRUD/supplier/delete.html"
-
 
 # PHONE SUPPLIER
 class PhoneSupplierCreateView(LoginRequiredMixin,CreateView):
@@ -202,3 +198,39 @@ class PhoneSupplierUpdateView(LoginRequiredMixin, UpdateView):
                 "ddd_number",
                 "phone_number",
             ]
+
+
+class PhoneContactDeleteView(DeleteView):
+    model = PhoneContact
+    template_name = "supplier/CRUD/contact_supplier/phones_contact/delete.html" 
+
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to
+
+class PhoneSupplierDeleteView(DeleteView):
+    model = PhoneSupplier
+    template_name = "supplier/CRUD/phones_supplier/delete.html" 
+
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to
+
+class ContactSupplierDeleteView(DeleteView):
+    model = ContactSupplier
+    template_name = "supplier/CRUD/contact_supplier/delete.html"
+    
+
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to
+
+
+
+class SupplierDeleteView(DeleteView):
+    model = Supplier
+    template_name = "supplier/CRUD/supplier/delete.html" 
+
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to

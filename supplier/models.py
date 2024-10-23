@@ -99,6 +99,7 @@ class ContactSupplier(models.Model):
 
         verbose_name = 'Contato do Fornecedor'
         verbose_name_plural = 'Contatos dos Fornecedores'
+
     @property
     def full_name(self):
         if self.last_name:
@@ -111,7 +112,7 @@ class ContactSupplier(models.Model):
     def __str__(self):
         """Unicode representation of ContactSupplier."""
         
-        return f'{self.full_name.title()} - {self.position_company.title}'
+        return f'{self.full_name.title()} - {self.position_company.title()}'
 
 
 class PhoneContact(PhoneBase):

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, DetailView, ListView, UpdateView
+from django.views.generic.edit import DeleteView
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -15,7 +16,7 @@ from suppli_request import models
 class SupplyResquestListView(LoginRequiredMixin, ListView):
     model = models.SupplyResquest
     template_name = "suppli_request/index.html"
-    paginate_by = 3
+    paginate_by = 10
 
 
 class SupplyRequestCreateView(LoginRequiredMixin,CreateView):
@@ -77,7 +78,10 @@ class SupplyRequestUpdateView(LoginRequiredMixin, UpdateView):
                 "description_request",
                 "status",
             ]
-    
+
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to    
 
 class SupplyRequestSupplierUpdateView(LoginRequiredMixin, UpdateView):
     model = models.SupplyResquest
@@ -87,6 +91,40 @@ class SupplyRequestSupplierUpdateView(LoginRequiredMixin, UpdateView):
                 'delivery_time',
             ]
     
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to    
+
+class SupplyItensRequestUpdateView(LoginRequiredMixin, UpdateView):
+    model = models.ItensSupplyRequest
+    template_name = "suppli_request/supplyrequest/CRUD/itens/update.html"    
+    fields = ['code_item_request',
+                'description_item',
+                'amount_item',
+                'unit_measurement',
+                'unit_value',
+            ]
+    
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to
+
+
+class SupplyRequestDeleteView(LoginRequiredMixin, DeleteView):
+    model = models.SupplyResquest
+    template_name = "suppli_request/supplyrequest/CRUD/delete.html"    
+    
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to
+
+class SupplyItensRequestDeleteView(LoginRequiredMixin, DeleteView):
+    model = models.ItensSupplyRequest
+    template_name = "suppli_request/supplyrequest/CRUD/itens/delete.html"
+    
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to
 
 
 # Views para Contato e Sobre

@@ -11,14 +11,14 @@
     <div class="container">
         <form class="jumbotron" method="post">
             {% csrf_token %}
-            <h2>Deseja realmente excluir o Fornecedor  
+            <h2>Deseja realmente excluir o Telefone  
                 <span class="text-danger">        
                     {{ object }}
                 </span>?
             </h2>
             <div class="btn-group" role="group" aria-label="First group">
                 <input type="submit" value="Excluir" class="btn btn-group btn-danger">
-                <a href="{% url 'supplier-detail' object.id %}"><input type="button"  class="btn btn-group btn-success" value="Cancelar">
+                <a href="{% url 'supplier-detail' object.supplier_id.id %}"><input type="button"  class="btn btn-group btn-success" value="Cancelar">
             </div>
         </form>
     </div>

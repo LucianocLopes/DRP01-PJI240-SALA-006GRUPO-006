@@ -8,11 +8,6 @@
                 <input type="button" value="Novo" class="btn">
             </a>
         </div>
-        <div class="input-group">
-            <div class="d-flex align-self-end p-2">
-                {% include 'partial/_pagination.html' %}
-            </div>
-        </div>
     </div>
     <div class="container table-overflow">
         {% if contacts %}
@@ -52,7 +47,7 @@
                                         ({{ phs_contact.ddd_number }}) {{ phs_contact.phone_number }}
                                         <a href="{% url 'supplier-updatephonecontact' phs_contact.id %}" ><i class="bi bi-pencil-square"></i></a>
                                         |
-                                        <a href="#"><i class="bi bi-trash-fill"></i></a>
+                                        <a href="{% url 'supplier-deletephonecontact' phs_contact.id %}?next={{ request.path|urlencode }}"><i class="bi bi-trash-fill"></i></a>
                                     </td>
                                     
                                 </tr>
@@ -69,7 +64,7 @@
                         <td class="text-center">
                             <a href="{% url 'supplier-updatecontact' contact.id %}" ><i class="bi bi-pencil-square"></i></a>
                             |  
-                            <a href=""><i class="bi bi-trash-fill"></i></a>
+                            <a href="{% url 'supplier-deletecontact' contact.id %}?next={{ request.path|urlencode }}"><i class="bi bi-trash-fill"></i></a>
                         </td>
                     </tr>            
                 {% endfor %}

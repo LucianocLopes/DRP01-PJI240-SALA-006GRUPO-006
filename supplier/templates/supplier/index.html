@@ -67,7 +67,7 @@
                                                                     <td class="text-center">
                                                                         <a href="{% url 'supplier-update' supplier.id %}" ><i class="bi bi-pencil-square text-primary"></i></a>
                                                                         |  
-                                                                        <a href=""><i class="bi bi-trash-fill text-danger"></i></a>
+                                                                        <a href="{% url 'supplier-delete' supplier.id %}?next={{ request.path|urlencode }}"><i class="bi bi-trash-fill text-danger"></i></a>
                                                                     </td>
                                                                 </tr>
                                                             {% endfor %}

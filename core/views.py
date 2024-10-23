@@ -14,7 +14,7 @@ from supplier import models as suppliermodels
 class IndexView(LoginRequiredMixin, ListView):
     model = models.SupplyResquest
     template_name = "core/index.html"
-    paginate_by = 3
+    paginate_by = 10
     
     def get_queryset(self):
         query = models.SupplyResquest.objects.all().order_by('-created')
