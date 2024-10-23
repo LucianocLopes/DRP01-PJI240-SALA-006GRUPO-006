@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect, request
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-from .models import Supplier, PhoneSupplier, ContactSupplier, PhoneContact
+from .models import Supplier, PhoneSupplier, ContactSupplier, PhoneContact, AddressSupplier
 from suppli_request import models
 
 
@@ -70,11 +70,13 @@ class SupplierDetailView(LoginRequiredMixin, DetailView):
         supplyrequest = models.SupplyResquest.objects.filter(
             supplier=self.object
         )
+        address = AddressSupplier.objects.filter(supplier = self.object).first()
         
         context['phones'] = phones
         context['contacts'] = contacts
         context['phones_contact'] = phones_contacts
         context['supplyrequest'] = supplyrequest
+        context['address'] = address
         
         return context
 
@@ -230,6 +232,77 @@ class ContactSupplierDeleteView(DeleteView):
 class SupplierDeleteView(DeleteView):
     model = Supplier
     template_name = "supplier/CRUD/supplier/delete.html" 
+
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to
+
+
+# ADDRESS
+class AddressSupplierCreateView(LoginRequiredMixin, CreateView):
+    model = AddressSupplier
+    template_name = "supplier/CRUD/address_supplier/create.html"
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.fields = ["address_type",
+                        "zip_code",
+                        "address",
+                        "number",
+                        "complement",
+                        "district",
+                        "city",
+                        "state",
+                        "ibge_code",
+                        "gia_code",
+                        "ddd_code",
+                        "siafi_code",
+                    ]
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super(AddressSupplierCreateView, self).get_context_data(**kwargs)
+        
+        pk_int = self.kwargs['int']
+        context['pk_int'] = pk_int
+        return context
+    
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to    
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        supplier = Supplier.objects.get(id=self.kwargs['int'])
+        
+        self.object.supplier = supplier
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
+class AddressSupplierUpdateView(LoginRequiredMixin, UpdateView):
+    model = AddressSupplier
+    template_name = "supplier/CRUD/address_supplier/update.html"
+    fields = ["address_type",
+                        "zip_code",
+                        "address",
+                        "number",
+                        "complement",
+                        "district",
+                        "city",
+                        "state",
+                        "ibge_code",
+                        "gia_code",
+                        "ddd_code",
+                        "siafi_code",
+                    ]
+
+    def get_success_url(self):
+        redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))
+        return redirect_to 
+
+class AddressSupplierDeleteView(DeleteView):
+    model = AddressSupplier
+    template_name = "supplier/CRUD/address_supplier/delete.html" 
 
     def get_success_url(self):
         redirect_to = self.request.POST.get('next', self.request.GET.get('next', '/'))

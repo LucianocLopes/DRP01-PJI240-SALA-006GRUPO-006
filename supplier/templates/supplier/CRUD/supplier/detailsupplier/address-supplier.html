@@ -1,0 +1,64 @@
+{% load static %}
+
+<div class="sidebar-body">
+    <div class="row custom-input">
+        <div class="col-sm-4 mb-2">
+            <label class="form-label" for="FormControlInput3">Tipo de Endereço</label>
+            <input class="form-control" id="FormControlInput3" type="text" value="{{ address.get_address_type_display }}">
+        </div>
+        <div class="col-sm-8 mb-2">
+            <label class="form-label" for="FormControlInput3">Endereço</label>
+            <input class="form-control" id="FormControlInput3" type="text" value="{{ address.address }}">
+        </div>
+    </div>
+    <div class="row custom-input">
+        <div class="col-sm-6 mb-2">
+            <label class="form-label" for="FormControlInput4">Número</label>
+            <input class="form-control" id="FormControlInput4" type="text" value="{{ address.number }}">
+        </div>
+        <div class="col-sm-6 mb-2">
+            <label class="form-label" for="FormControlInput4">Complemento</label>
+            <input class="form-control" id="FormControlInput4" type="text" value="{{ address.complement }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 mb-2">
+            <label class="form-label" for="FormControlInput3">Bairro</label>
+            <input class="form-control" id="FormControlInput3" type="text" value="{{ address.district }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 mb-2">
+            <label class="form-label" for="FormControlInput3">Cidade</label>
+            <input class="form-control" id="FormControlInput3" type="text" value="{{ address.city }}">
+        </div>
+    </div>
+    <div class="row custom-input">
+        <div class="col-sm-2 mb-2">
+            <label class="form-label" for="FormControlInput4">UF</label>
+            <input class="form-control" id="FormControlInput4" type="text" value="{{ address.state }}">
+        </div>
+        <div class="col-sm-4 mb-2">
+            <label class="form-label" for="FormControlInput4">CEP</label>
+            <input class="form-control" id="FormControlInput4" type="text" value="{{ address.zip_code }}">
+        </div>
+    </div>
+    <div class="btn-toolbar justify-content-between p-3" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            
+            {% if address %}
+            <a href="{% url 'supplier-updateaddress' address.id  %}?next={{ request.path|urlencode }}" class="transparent-button">
+                <input type="button" value="Alterar" class="btn">
+            </a>
+            <a href="{% url 'supplier-deleteaddress' address.id %}?next={{ request.path|urlencode }}" class="transparent-button">
+                <input type="button" value="Excluir" class="btn">
+            </a>
+            {% else %}
+            <a href="{% url 'supplier-createaddress' supplier.id %}?next={{ request.path|urlencode }}" class="transparent-button">
+                <input type="button" value="Adicionar" class="btn">
+            </a>
+            {% endif %}
+            
+        </div>
+    </div>
+</div>

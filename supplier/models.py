@@ -202,7 +202,7 @@ class AddressSupplier(AddressBase):
     )
     address_type = models.CharField(_("Tipo de Endereço"), max_length=2, choices=TypeAddressChoice.choices)
     number = models.CharField(_("Número"), max_length=5)
-    complement = models.CharField(_("Complemento"), max_length=20)
+    complement = models.CharField(_("Complemento"), max_length=20, null=True, blank=True)
 
     class Meta:
         """Meta definition for Supplier."""

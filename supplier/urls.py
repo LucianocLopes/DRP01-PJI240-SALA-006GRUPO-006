@@ -21,4 +21,8 @@ urlpatterns = [
     path("NewPhoneContact/<int:int>/<int:int2>/", v.PhoneContactCreateView.as_view(), name="supplier-createphonecontact"),
     path("UpdatePhoneContact/<int:pk>/", v.PhoneContactUpdateView.as_view(), name="supplier-updatephonecontact"),
     path("PhoneContact/ConfirmDelete/<int:pk>/",  v.PhoneContactDeleteView.as_view(), name="supplier-deletephonecontact"),
+    # CRUD address_supplier
+    path("NewAddressNumber/<int:int>", v.AddressSupplierCreateView.as_view(), name="supplier-createaddress"),
+    path("UpdateAddressNumber/<int:pk>/", v.AddressSupplierUpdateView.as_view(), name="supplier-updateaddress"),
+    path("Address/ConfirmDelete/<int:pk>/",  v.AddressSupplierDeleteView.as_view(), name="supplier-deleteaddress"),
 ]

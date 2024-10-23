@@ -1,0 +1,124 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="container p-2 mt-4">
+    <div class="row"> 
+        <div class="col-12"> 
+            <div class="card"> 
+                <div class="card-header card-no-border pb-0">
+                    <h3 class="text-center">Alterar o Endereço do Fornecedor</h3>
+                </div>
+                <div class="container">
+                    <form action="" method="post" class="p-5 m-3">
+                        {% csrf_token %}
+                        <div id="div_id_address_type" class="mb-3"> 
+                            <label for="id_address_type" class="form-label requiredField">Tipo de Endereço
+                                <span class="asteriskField">*</span> 
+                            </label> 
+                            <select name="address_type" class="select form-select" required="" id="id_address_type"> 
+                                <option value="" selected="">---------</option> 
+                                <option value="RS"
+                                    {% if object.address_type == 'RS' %}
+                                        selected=""
+                                    {% endif %}
+                                >Residencial</option> 
+                                <option value="CM"
+                                    {% if object.address_type == 'CM' %}
+                                        selected=""
+                                    {% endif %}
+                                >Comercial</option>
+                                <option value="OT"
+                                {% if object.address_type == 'OT' %}
+                                        selected=""
+                                    {% endif %}
+                                >Outros</option>
+                            </select> 
+                        </div> 
+                        <div id="div_id_zip_code" class="mb-3"> 
+                            <label for="id_zip_code" class="form-label requiredField">
+                                CEP<span class="asteriskField">*</span> 
+                            </label> 
+                            <input type="text" name="zip_code" maxlength="9" class="textinput form-control" required="" id="id_zip_code" value="{{ object.zip_code }}"> 
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="buscarCEP()">Buscar</button>
+                        </div>
+                        <!-- Mensagem de erro -->
+                        <p id="error-message" style="color: red;"></p>
+                        
+                        <div id="div_id_address" class="mb-3"> 
+                            <label for="id_address" class="form-label requiredField">
+                                Lougradouro<span class="asteriskField">*</span> 
+                            </label> 
+                            <input type="text" name="address" maxlength="100" class="textinput form-control" required="" id="id_address" value="{{ object.address }}">
+                        </div> 
+                        <div id="div_id_number" class="mb-3"> 
+                            <label for="id_number" class="form-label requiredField">
+                                Número<span class="asteriskField">*</span> 
+                            </label> 
+                            <input type="text" name="number" maxlength="5" class="textinput form-control" required="" id="id_number"value="{{ object.number }}"> 
+                        </div> 
+                        <div id="div_id_complement" class="mb-3"> 
+                            <label for="id_complement" class="form-label requiredField">
+                                Complemento 
+                            </label> 
+                            <input type="text" name="complement" maxlength="20" class="textinput form-control" id="id_complement"value="{{ object.complement }}"> 
+                        </div> 
+                        <div id="div_id_district" class="mb-3"> 
+                            <label for="id_district" class="form-label requiredField">
+                                Bairro<span class="asteriskField">*</span> 
+                            </label> 
+                            <input type="text" name="district" maxlength="70" class="textinput form-control" required="" id="id_district" value="{{ object.district }}"> 
+                        </div> 
+                        <div id="div_id_city" class="mb-3"> 
+                            <label for="id_city" class="form-label requiredField">
+                                Cidade<span class="asteriskField">*</span> 
+                            </label> 
+                            <input type="text" name="city" maxlength="70" class="textinput form-control" required="" id="id_city"value="{{ object.city }}"> 
+                        </div> 
+                        <div id="div_id_state" class="mb-3"> 
+                            <label for="id_state" class="form-label requiredField">
+                                UF<span class="asteriskField">*</span> 
+                            </label> 
+                            <input type="text" name="state" maxlength="2" class="textinput form-control" required="" id="id_state"value="{{ object.state }}"> 
+                        </div> 
+                        <div id="div_id_ibge_code" class="mb-3"> 
+                            <label for="id_ibge_code" class="form-label requiredField">
+                                Código IBGE<span class="asteriskField">*</span> 
+                            </label> 
+                            <input type="text" name="ibge_code" maxlength="10" class="textinput form-control" required="" id="id_ibge_code"value="{{ object.ibge_code }}"> 
+                        </div> 
+                        <div id="div_id_gia_code" class="mb-3"> 
+                            <label for="id_gia_code" class="form-label requiredField">
+                                Código GIA<span class="asteriskField">*</span> 
+                            </label> 
+                            <input type="text" name="gia_code" maxlength="6" class="textinput form-control" required="" id="id_gia_code"value="{{ object.gia_code }}"> 
+                        </div> 
+                        <div id="div_id_ddd_code" class="mb-3"> 
+                            <label for="id_ddd_code" class="form-label requiredField">
+                                Código DDD<span class="asteriskField">*</span> 
+                            </label> 
+                            <input type="text" name="ddd_code" maxlength="2" class="textinput form-control" required="" id="id_ddd_code"value="{{ object.ddd_code }}"> 
+                        </div>
+                        <div id="div_id_siafi_code" class="mb-3"> 
+                            <label for="id_siafi_code" class="form-label requiredField">
+                                Código SIAFI<span class="asteriskField">*</span> 
+                            </label> 
+                            <input type="text" name="siafi_code" maxlength="6" class="textinput form-control" required="" id="id_siafi_code"value="{{ object.siafi_code }}"> 
+                        </div>
+                        <div class="btn-group">
+                            <input type="submit" value="Salvar" class="btn btn-primary me-1">
+                            <a href="{% url 'supplier-detail' addresssupplier.supplier.id %}" class="btn btn-danger">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
