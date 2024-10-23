@@ -5906,3 +5906,10 @@ body.log {
     background-color:#dc3545; 
 }
 
+.button-container {
+    text-align: center;
+}
+
+.button-container button {
+    margin: 0 auto;
+}
