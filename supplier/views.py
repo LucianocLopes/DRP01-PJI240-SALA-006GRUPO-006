@@ -44,7 +44,9 @@ class SupplierListView(LoginRequiredMixin, ListView):
     model = Supplier
     template_name = "supplier/index.html"
     context_object_name = 'supplier_list'
-    paginate_by = 10
+    if Supplier.objects.exists():
+        paginate_by = 10
+    
 
 class SupplierCreateView(LoginRequiredMixin, SupplierFieldsMixin, CreateView):
     model = Supplier

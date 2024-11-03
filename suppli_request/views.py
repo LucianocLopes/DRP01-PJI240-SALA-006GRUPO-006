@@ -16,7 +16,9 @@ from suppli_request import models
 class SupplyResquestListView(LoginRequiredMixin, ListView):
     model = models.SupplyResquest
     template_name = "suppli_request/index.html"
-    paginate_by = 10
+    if models.SupplyResquest.objects.exists():
+        paginate_by = 10
+    
 
 
 class SupplyRequestCreateView(LoginRequiredMixin,CreateView):
